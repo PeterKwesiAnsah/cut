@@ -1,0 +1,14 @@
+.movie-box{
+    padding: 3rem;
+}
+
+.movie-box__title{
+    color:var(--tertiary);
+    margin-bottom: 2rem;
+}
+
+.movie-row{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(15rem,1fr));
+    gap: 2rem;
+}
