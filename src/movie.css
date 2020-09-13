@@ -56,12 +56,24 @@
     transform: translate(-50%,50%);
     display: flex;
     opacity: 0;
-    transition: all .3s;
+    transition: all .3s .1s;
     cursor: pointer;
 
 }
-#view-box--heart{
-    margin-left: 8rem;
-    
-
+.icon-heart{
+ margin-right: 2.5rem;
 }
+.icon-heart:hover{
+animation: 1.5s ease 0s infinite beat;
+}
+
+.icon-play{
+    margin-right: 2.5rem;
+}
+
+
+
+@keyframes beat {
+    0%, 50%, 100% { transform: scale(1.2, 1.2); }
+    30%, 80% { transform: scale(0.92, 0.95); }
+  }
