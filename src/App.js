@@ -1,4 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
+//import {ReactComponent as Play} from '.../public/Play.svg';
+
 import './App.css';
 import Moviebox from './components/Moviebox';
 const API_KEY = 'dad5bd632b1e04f64447930a6bda5cb3';
