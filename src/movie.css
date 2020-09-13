@@ -1,6 +1,41 @@
 .movie-poster{
     width: 100%;
+    height: 100%;
     object-fit: contain;
-    border-radius: 1rem;
+   border-radius: 1rem;
     cursor: pointer;
+    transition: all .3s;
+    display: block;
+}
+
+.movie-poster:hover{
+    transform: scale(1.1);
+}
+
+.movie-row{
+    transition: all .3s;
+}
+
+.movie-poster-box{
+    position: relative;
+    transition: all .3s;
+}
+
+.movie-row:hover > div:not(:hover){
+    transform: scale(0.9);
+}
+
+
+.movie-poster__filter{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:transparent;
+    z-index: 2;
+    border-radius: 1rem;
+}
+.movie-poster__filter:hover{
+    background-color: rgba(69, 162, 158,0.6);
 }
