@@ -1,7 +1,6 @@
 .movie-box{
     padding: 3rem;
 }
-
 .movie-box__title{
     color:var(--tertiary);
     margin-bottom: 2rem;
