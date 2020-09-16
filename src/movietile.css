@@ -1,9 +1,16 @@
 .movie-tile{
-    min-height: 75vh;
+    min-height: 100vh;
     width: 100%;
-    margin-top: 4rem;
-    border-radius: 2rem;
     background-repeat:no-repeat;
     background-position: center center;
     background-size: cover;
 }
+
+
+/* 
+darkMuted:      "#20293a"
+darkVibrant:      "#29435c"
+lightMuted:     "#98b6c1"
+lightVibrant:    "#a4c2d4"
+muted: "#7190a0"
+vibrant: "#3e6a85" */

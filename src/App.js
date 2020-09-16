@@ -37,12 +37,13 @@ const App = () => {
 	return (
 		<SetItems.Provider value={{setMovieId,setShowTile}}>
 			<main className="App">
-				<h1 className="logo-title">Find the right movie for you ..... </h1>
+			
 
 				{showTile ? (
-					<><Movietile id={movieId} request={movieReq}></Movietile></>
+					<><Movietile id={movieId} request={movieReq} movieId={movieId}></Movietile></>
 				) : (
 					<>
+						<h1 className="logo-title">Find the right movie for you ..... </h1>
 						<Moviebox
 							title={'Upcoming Movies'}
 							request={requests.getUpcoming}
