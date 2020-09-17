@@ -58,7 +58,7 @@ genres: Array(3)
 				const { darkMuted,darkVibrant,lightMuted,lightVibrant } = data;
 	
 
-				//Hex code color conversion
+				//Hex code color conversion for linear gradient
 				  
 				const rgba={
 					darkVibrant:convertHexToRGBA(darkVibrant,72),
@@ -79,8 +79,7 @@ genres: Array(3)
 					<div
 						style={{
 							backgroundImage: `linear-gradient(to right,${rgba.darkMuted},${rgba.lightVibrant}),url(${url})`,
-							// backgroundColor: rgba.vibrant, //use gradient
-							// backgroundBlendMode: 'overlay',
+	
 						}}
 						className="movie-tile"
 					>
