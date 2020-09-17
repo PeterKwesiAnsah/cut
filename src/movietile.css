@@ -4,7 +4,86 @@
     background-repeat:no-repeat;
     background-position: center center;
     background-size: cover;
+    display: grid;
+    align-content: center;
 }
+.movie-card{
+    min-width: 30rem;
+    height:40rem;
+    background-repeat:no-repeat;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 2rem;
+    margin-left: 2rem;
+}
+
+.movie-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+}
+
+.movie-icons{
+    align-content: center;
+}
+
+.movie-desc{
+    display: grid;
+    gap: 3rem 0;
+    color: var(--text);
+    margin-left: 4rem;
+}
+
+.movie-title{
+    font-size: 4rem;
+}
+
+.movie-tagline{
+    font-size: 2rem;
+    font-style: italic;
+    color:var(--tertiary)
+}
+.movie-title__header{
+    font-size: inherit;
+    font-weight: bold;
+}
+
+.movie-title__genre{
+    font-size: 2rem;
+    color: var(--tertiary);
+}
+.movie-genre{
+    margin-right: 1.5rem;
+}
+
+.movie-runtime{
+    color: var(--text);
+
+}
+.movie-period{
+    font-size: 4rem; 
+}
+
+.movie-overview{
+    font-size: 2rem;
+}
+.icon-heart{
+    margin-right: 2.5rem;
+   }
+   .icon-heart:hover{
+   animation: 1.5s ease 0s infinite beat;
+   }
+   
+   .icon-play{
+       margin-right: 2.5rem;
+   }
+   
+   
+   @keyframes beat {
+       0%, 50%, 100% { transform: scale(1.2, 1.2); }
+       30%, 80% { transform: scale(0.92, 0.95); }
+     }
 
 
 /* 

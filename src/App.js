@@ -49,7 +49,7 @@ const App = () => {
 							request={requests.getUpcoming}
 							imgBase_URL={imgBase_URL}
 						></Moviebox>
-						<Moviebox
+						{/* <Moviebox
 							title={'Popular Movies'}
 							request={requests.getPopular}
 							imgBase_URL={imgBase_URL}
@@ -66,7 +66,7 @@ const App = () => {
 							title={'In Cinema Now'}
 							request={requests.getNowPlaying}
 							imgBase_URL={imgBase_URL}
-						></Moviebox>
+						></Moviebox> */}
 					</>
 				)}
 			</main>
