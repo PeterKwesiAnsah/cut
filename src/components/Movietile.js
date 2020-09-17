@@ -5,6 +5,7 @@ import { Palette } from 'react-palette';
 import { ReactComponent as Fav } from './fav.svg';
 import { ReactComponent as Play } from './play.svg';
 import { ReactComponent as Watch } from './watchlist.svg';
+import convertHexToRGBA from '../hexRGB'
 
 const Movietile = ({ id, request }) => {
 	const [url, setURL] = useState('');
@@ -54,7 +55,20 @@ genres: Array(3)
 	return (
 		<Palette src={url}>
 			{({ data, loading, error }) => {
-				const { vibrant } = data;
+				const { darkMuted,darkVibrant,lightMuted,lightVibrant } = data;
+	
+
+				//Hex code color conversion
+				  
+				const rgba={
+					darkVibrant:convertHexToRGBA(darkVibrant,72),
+					darkMuted:convertHexToRGBA(darkMuted,72),
+					lightMuted:convertHexToRGBA(lightMuted,52),
+					lightVibrant:convertHexToRGBA(lightVibrant,52)
+
+
+				}
+				console.log(rgba.vibrant)
 
 				//deconstructing the movie object for necessary information to render
 				const { original_title, overview, tagline, runtime,genres } = movie;
@@ -64,9 +78,9 @@ genres: Array(3)
 				return (
 					<div
 						style={{
-							backgroundImage: `url(${url})`,
-							backgroundColor: vibrant, //use gradient
-							backgroundBlendMode: 'overlay',
+							backgroundImage: `linear-gradient(to right,${rgba.darkMuted},${rgba.lightVibrant}),url(${url})`,
+							// backgroundColor: rgba.vibrant, //use gradient
+							// backgroundBlendMode: 'overlay',
 						}}
 						className="movie-tile"
 					>

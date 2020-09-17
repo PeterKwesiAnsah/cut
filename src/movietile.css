@@ -8,7 +8,7 @@
     align-content: center;
 }
 .movie-card{
-    min-width: 30rem;
+    min-width: 25rem;
     height:40rem;
     background-repeat:no-repeat;
     background-position: center center;
