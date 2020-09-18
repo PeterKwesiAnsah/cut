@@ -5,9 +5,11 @@ import { Palette } from 'react-palette';
 import { ReactComponent as Fav } from './fav.svg';
 import { ReactComponent as Play } from './play.svg';
 import { ReactComponent as Watch } from './watchlist.svg';
+import { ReactComponent as Close } from './close.svg';
+
 import convertHexToRGBA from '../hexRGB'
 
-const Movietile = ({ id, request }) => {
+const Movietile = ({ id, request,setShowTile }) => {
 	const [url, setURL] = useState('');
 	//Creating a state for movie data from fetch
 	const [movie, setMovie] = useState({});
@@ -23,34 +25,12 @@ const Movietile = ({ id, request }) => {
 //function returns span of genres in the genres array
 const getGenre = (genres) => genres.map(({ name ,id}) => <span className='movie-genre' key={id}>{name}</span>);
 
-/*
+//function handles showing the moviePosters
+const handleClick=()=>[
+	setShowTile(false)
+]
 
-c
-*/
-	console.log(movie);
-	/*
-	original_language: "en"
-original_title: "Tenet"
-overview: "Armed with only one word - Tenet - and fighting for the survival of the entire world, the Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time."
-popularity: 274.155
-poster_path: "/k68nPLbIST6NP96JmTxmZijEvCA.jpg"
-production_companies: (2) [{…}, {…}]
-production_countries: (3) [{…}, {…}, {…}]
-release_date: "2020-08-22"
-revenue: 146200000
-runtime: 150
-spoken_languages: [{…}]
-status: "Released"
-tagline: "Time runs out."
-title: "Tenet"
-video: false
-vote_average: 7.5
-vote_count: 1557
-genres: Array(3)
-0: {id: 28, name: "Action"}
-1: {id: 53, name: "Thriller"}
-2: {id: 878, name: "Science Fiction"}
-	*/
+
 
 	return (
 		<Palette src={url}>
@@ -68,8 +48,7 @@ genres: Array(3)
 
 
 				}
-				console.log(rgba.vibrant)
-
+				
 				//deconstructing the movie object for necessary information to render
 				const { original_title, overview, tagline, runtime,genres } = movie;
 				//
@@ -82,8 +61,10 @@ genres: Array(3)
 	
 						}}
 						className="movie-tile"
-					>
+					> 
+					 <Close onClick={handleClick}></Close>
 						<div className="movie-container">
+							
 							<div
 								className="movie-card"
 								style={{ backgroundImage: `url(${url})` }}

@@ -40,7 +40,7 @@ const App = () => {
 			
 
 				{showTile ? (
-					<><Movietile id={movieId} request={movieReq} movieId={movieId}></Movietile></>
+					<><Movietile id={movieId} request={movieReq} setShowTile={setShowTile}></Movietile></>
 				) : (
 					<>
 						<h1 className="logo-title">Find the right movie for you ..... </h1>

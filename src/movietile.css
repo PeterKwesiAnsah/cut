@@ -7,6 +7,17 @@
     display: grid;
     align-content: center;
 }
+.close{
+    width: 2rem;
+    height: 2rem;
+    justify-self: end;
+    margin-top: -10rem;
+    transform: translateX(-3rem);
+    cursor: pointer;
+    
+}
+
+
 .movie-card{
     min-width: 25rem;
     height:40rem;
