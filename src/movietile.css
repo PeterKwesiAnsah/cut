@@ -6,6 +6,7 @@
     background-size: cover;
     display: grid;
     align-content: center;
+    position: relative;
 }
 .close{
     width: 2rem;
@@ -16,7 +17,6 @@
     cursor: pointer;
     
 }
-
 
 .movie-card{
     min-width: 25rem;
@@ -29,6 +29,7 @@
 }
 
 .movie-container{
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,7 +37,22 @@
 }
 
 .movie-icons{
-    align-content: center;
+    display: grid;
+    grid-template-columns: repeat(3,min-content);
+    gap: 0 3rem;
+    justify-items: flex-end;
+    align-items: center;
+}
+
+.movie-icons__play{
+    display: grid;
+    grid-template-columns: min-content max-content;
+    gap: 0 1rem;
+    align-items: center;
+    cursor: pointer;
+}
+.play-text{
+    font-size: 1.8rem;
 }
 
 .movie-desc{
@@ -79,17 +95,12 @@
 .movie-overview{
     font-size: 2rem;
 }
-.icon-heart{
-    margin-right: 2.5rem;
-   }
+
    .icon-heart:hover{
    animation: 1.5s ease 0s infinite beat;
    }
    
-   .icon-play{
-       margin-right: 2.5rem;
-   }
-   
+
    
    @keyframes beat {
        0%, 50%, 100% { transform: scale(1.2, 1.2); }

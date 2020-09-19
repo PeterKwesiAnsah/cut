@@ -11,7 +11,6 @@ const imgBase_URL = 'https://image.tmdb.org/t/p/original';
 const movieReq=(movieID)=>`${base_URL}/movie/${movieID}?api_key=${API_KEY}`
 const query = '';
 
-//
 //const imgBase_URL="https://image.tmdb.org/t/p/original/kwUQFeFXOOpgloMgZaadhzkbTI4.jpg"
 
 

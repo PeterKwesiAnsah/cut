@@ -54,22 +54,20 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,50%);
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3,min-content);
+    gap: 0 2.5rem;
     opacity: 0;
     transition: all .3s .1s;
     cursor: pointer;
 
 }
-.icon-heart{
- margin-right: 2.5rem;
-}
+
 .icon-heart:hover{
 animation: 1.5s ease 0s infinite beat;
 }
 
-.icon-play{
-    margin-right: 2.5rem;
-}
+
 
 
 @keyframes beat {
