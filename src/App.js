@@ -32,9 +32,19 @@ const requests = {
 const App = () => {
 	const [movieId, setMovieId] = useState(0);
 	const [showTile, setShowTile] = useState(false);
+	const [likes,setLikes]=useState([])
+	const [watchList,setWatchList]=useState([])
+
+	//liikes and watchlist should be global and persisted using locale storage
+	//Likes and watchList data will be rendered as a movie-box with their respective tittles
+	/*
+	1.first do it all normally
+	2.if it works then you persit the data
+
+	*/
 	//use conditional rendering to render each movie poster true/false boolean...true to show the movie and it title ...false to go back to what was being rendered already
 	return (
-		<SetItems.Provider value={{setMovieId,setShowTile}}>
+		<SetItems.Provider value={{setMovieId,setShowTile,setLikes,likes,setWatchList,watchList}}>
 			<main className="App">
 			
 

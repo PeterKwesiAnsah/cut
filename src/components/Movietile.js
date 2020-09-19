@@ -6,10 +6,9 @@ import { ReactComponent as Fav } from './fav.svg';
 import { ReactComponent as Play } from './play.svg';
 import { ReactComponent as Watch } from './watchlist.svg';
 import { ReactComponent as Close } from './close.svg';
-
 import convertHexToRGBA from '../hexRGB';
 import Playtrailer from './Playtrailer';
-import Movie from './Movie';
+
 
 const Movietile = ({ id, request, setShowTile }) => {
 	const [url, setURL] = useState('');
@@ -24,7 +23,7 @@ const Movietile = ({ id, request, setShowTile }) => {
 		height: '3.5rem',
 		cursor: 'pointer',
 	};
-
+console.log(movie)
 	useEffect(() => {
 		const fetchData = async () => {
 			const movie = await axios.get(request(id));

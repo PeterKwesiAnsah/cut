@@ -22,8 +22,13 @@ const Moviebox = ({ title, request, imgBase_URL, isLarge }) => {
 		<div className="movie-box">
 			<h1 className="movie-box__title">{title}</h1>
 			<div className="movie-row">
-				{movies.map(({ poster_path, id }) => (
-					<Movie path={imgBase_URL + poster_path} key={id} id={id}></Movie>
+				{movies.map(({ poster_path, id, original_title }) => (
+					<Movie
+						path={imgBase_URL + poster_path}
+						key={id}
+						id={id}
+						title={original_title}
+					></Movie>
 				))}
 			</div>
 		</div>
