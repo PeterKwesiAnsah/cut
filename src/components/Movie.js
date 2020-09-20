@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import '../movie.css';
-import { ReactComponent as Fav } from './fav.svg';
-import { ReactComponent as Play } from './play.svg';
-import { ReactComponent as Watch } from './watchlist.svg';
+import Play from './Play'
+import Fav from './Fav'
+import WatchList from './WatchList'
 import { SetItems } from '../App';
 
 const Movie = ({ path, id, title }) => {
@@ -15,7 +15,10 @@ const Movie = ({ path, id, title }) => {
 		watchList,
 	} = useContext(SetItems);
 	//use to determine if a movie poster is liked or not
-	const [ liked, setLiked]  = useState(false);
+	const [liked, setLiked] = useState(false);
+	const [watched, setWatched] = useState(false);
+
+	//liked/watched movies should have the liked/ 
 
 	//handles the click event
 	const handleClick = (e) => {
@@ -30,25 +33,47 @@ const Movie = ({ path, id, title }) => {
 
 	//used to set
 	const handleLike = () => {
-		//if movie is not liked,like it 
+		//if movie is liked,remove it
 		if (liked) {
-			setLiked(false)
-			console.log(`${title} was unliked`)
+			setLiked(false);
+			console.log(`${title} was unliked`);
 			//remove the movie from likes
+			const filterdMovies = likes.filter((movie) => movie.id !== id);
+			//update likes with the filtered movies
+			setLikes(filterdMovies);
+		}
+		//if movie is not liked,add it
+		else {
+			setLiked(true);
+			console.log(`${title} was liked`);
+			//add the movie to the likes
+			setLikes([...likes, { id, title, path ,liked}]);
+		}
+
+		//setLikes([...likes,{id,title,path}])
+	};
+
+
+	const handleWatch = () => {
+		//if movie is  added to the watch,remove it
+		if (watched) {
+			setWatched(false);
+			console.log(`${title} was removed from watch list`);
+			//remove the already added movie from watch
 			/*
 			1.use filter function
 			*/
-			const filterdMovies=likes.filter((movie)=>movie.id!==id)
-			setLikes(filterdMovies)
+			const filterdList = watchList.filter((movie) => movie.id !== id);
+			setWatchList(filterdList);
 		}
-		//if movie is liked,remove it 
-		else{
-			setLiked(true)
-			console.log(`${title} was liked`)
-			//add the movie to the likes 
-			setLikes([...likes,{id,title,path}])
+		//if movie is  not added to the watch,add it
+		else {
+			setWatched(true);
+			console.log(`${title} was added to the watch list`);
+			//add the movie to the watchList
+			setWatchList([...watchList, { id, title, path ,watched}]);
 		}
-		
+
 		//setLikes([...likes,{id,title,path}])
 	};
 
@@ -57,8 +82,8 @@ const Movie = ({ path, id, title }) => {
 			<img src={path} alt="movie posters" className="movie-poster"></img>
 			<div className="movie-poster__filter"></div>
 			<div className="icon-box">
-				<Fav onClick={handleLike}></Fav>
-				<Watch></Watch>
+				<Fav liked={liked} handleLike={handleLike}></Fav>
+				<WatchList watched={watched} handleWatch={handleWatch}></WatchList>
 				<Play></Play>
 			</div>
 		</div>

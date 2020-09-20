@@ -1,10 +1,11 @@
 import React from 'react';
 
-const Fav = () => {
+const Fav = ({ liked, handleLike }) => {
 	return (
 		<>
 			<svg
-				class="icon-heart"
+				onClick={handleLike}
+				className={liked ? '' : 'icon-heart'}
 				width="24px"
 				height="24px"
 				viewBox="0 0 24 24"
@@ -17,7 +18,7 @@ const Fav = () => {
 					id="Shape-heart"
 					d="M9.725,18.286l-7.87-7.7.524-.536-.524.536a6.115,6.115,0,0,1,0-8.775,6.406,6.406,0,0,1,8.394-.46,6.406,6.406,0,0,1,8.394.46,6.115,6.115,0,0,1,0,8.775l-7.87,7.7a.75.75,0,0,1-1.049,0Z"
 					transform="translate(1.75 3.25)"
-					fill="#141124"
+					fill={liked ? '#a83f39' : '#141124'}
 				/>
 			</svg>
 		</>

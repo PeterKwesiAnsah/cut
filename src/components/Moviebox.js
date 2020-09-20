@@ -2,8 +2,9 @@ import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import '../moviebox.css';
 import Movie from './Movie';
-const Moviebox = ({ title, request, imgBase_URL, isLarge }) => {
+const Moviebox = ({ title, request, imgBase_URL, isLarge, movieP }) => {
 	const [movies, setMovies] = useState([]);
+
 	useEffect(() => {
 		const fetchdata = async () => {
 			const results = await axios.get(request);
@@ -16,20 +17,32 @@ const Moviebox = ({ title, request, imgBase_URL, isLarge }) => {
 			//console.log(movies)
 			setMovies(movies);
 		};
-		fetchdata();
-	}, []);
+		if (request) {
+			//if there is a request prop run the async function
+			fetchdata();
+		} else {
+			//if there is no request prop....then obviously  there's a  movie prop passed
+			setMovies(movieP);
+		}
+	}, [movieP]);
+
 	return (
 		<div className="movie-box">
 			<h1 className="movie-box__title">{title}</h1>
-			<div className="movie-row">
-				{movies.map(({ poster_path, id, original_title }) => (
-					<Movie
-						path={imgBase_URL + poster_path}
-						key={id}
-						id={id}
-						title={original_title}
-					></Movie>
-				))}
+
+			<div className={request ? 'movie-row' : 'movie-row--likes'}>
+				{request
+					? movies.map(({ poster_path, id, original_title }) => (
+							<Movie
+								path={imgBase_URL + poster_path}
+								key={id}
+								id={id}
+								title={original_title}
+							></Movie>
+					  ))
+					: movies.map(({ path, id, title }) => (
+							<Movie path={path} key={id} id={id} title={title}></Movie>
+					  ))}
 			</div>
 		</div>
 	);

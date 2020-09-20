@@ -6,6 +6,12 @@
     margin-bottom: 2rem;
 }
 
+.movie-row--likes{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(13rem,20rem));
+    gap: 2rem;
+}
+
 .movie-row{
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(15rem,1fr));

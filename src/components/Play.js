@@ -4,7 +4,6 @@ const Play = () => {
 	return (
 		<>
 			<svg
-				class="icon-play"
 				width="24px"
 				height="24px"
 				viewBox="0 0 24 24"
