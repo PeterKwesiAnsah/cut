@@ -2,9 +2,9 @@ import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import '../moviebox.css';
 import Movie from './Movie';
-const Moviebox = ({ title, request, imgBase_URL, isLarge, movieP }) => {
+const Moviebox = ({ title, request, imgBase_URL, isLarge, movieP,likedMovies,watchLists }) => {
 	const [movies, setMovies] = useState([]);
-
+	// const [empty,setEmpty]=useState(t)
 	useEffect(() => {
 		const fetchdata = async () => {
 			const results = await axios.get(request);
@@ -24,6 +24,9 @@ const Moviebox = ({ title, request, imgBase_URL, isLarge, movieP }) => {
 			//if there is no request prop....then obviously  there's a  movie prop passed
 			setMovies(movieP);
 		}
+		// if(movieP){
+
+		// }
 	}, [movieP]);
 
 	return (
@@ -38,10 +41,11 @@ const Moviebox = ({ title, request, imgBase_URL, isLarge, movieP }) => {
 								key={id}
 								id={id}
 								title={original_title}
+
 							></Movie>
 					  ))
 					: movies.map(({ path, id, title }) => (
-							<Movie path={path} key={id} id={id} title={title}></Movie>
+							<Movie path={path} key={id} id={id} title={title} likedMovies={likedMovies} watchLists={watchLists}></Movie>
 					  ))}
 			</div>
 		</div>

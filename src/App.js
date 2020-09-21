@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './App.css';
 import Moviebox from './components/Moviebox';
@@ -57,6 +57,10 @@ const App = () => {
 							id={movieId}
 							request={movieReq}
 							setShowTile={setShowTile}
+							global={{setLikes,
+								likes,
+								setWatchList,
+								watchList,}}
 						></Movietile>
 					</>
 				) : (
@@ -66,14 +70,24 @@ const App = () => {
 							title={'Upcoming Movies'}
 							request={requests.getUpcoming}
 							imgBase_URL={imgBase_URL}
-						></Moviebox>
 
-						<Moviebox
-							title={'My Favorite'}
-							movieP={likes}
-							// request={requests.getPopular}
-							// imgBase_URL={i
 						></Moviebox>
+						{likes && (
+							<Moviebox
+								title={'My Favorite'}
+								movieP={likes}
+								likedMovies
+							></Moviebox>
+						)}
+
+						{watchList && (
+							<Moviebox
+								title={'My List'}
+								movieP={watchList}
+								watchLists
+							></Moviebox>
+						)}
+
 						{/* <Moviebox
 							title={'Popular Movies'}
 							request={requests.getPopular}

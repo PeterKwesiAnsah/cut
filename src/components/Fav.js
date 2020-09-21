@@ -1,13 +1,14 @@
 import React from 'react';
 
-const Fav = ({ liked, handleLike }) => {
+const Fav = ({ liked, handleLike ,medium}) => {
+
 	return (
 		<>
 			<svg
 				onClick={handleLike}
 				className={liked ? '' : 'icon-heart'}
-				width="24px"
-				height="24px"
+				width={medium ? "3.6rem" :"24px"}
+				height={medium ? "3.6rem" :"24px"}
 				viewBox="0 0 24 24"
 				id="_24x24_On_Light_Favorite"
 				data-name="24x24/On Light/Favorite"

@@ -1,11 +1,12 @@
 import React from 'react';
 
-const Play = () => {
+const Play = ({handlePlay,medium}) => {
 	return (
 		<>
 			<svg
-				width="24px"
-				height="24px"
+			// onClick={handlePlay}
+				width={medium ? "3.6rem" :"24px"}
+				height={medium ? "3.6rem" :"24px"}
 				viewBox="0 0 24 24"
 				id="_24x24_On_Light_Play"
 				data-name="24x24/On Light/Play"

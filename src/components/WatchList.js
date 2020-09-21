@@ -1,12 +1,12 @@
 import React from 'react';
 
-const WatchList = ({ watched, handleWatch }) => {
+const WatchList = ({ watched, handleWatch,medium }) => {
 	return (
 		<>
 			<svg
 				onClick={handleWatch}
-				width="24px"
-				height="24px"
+				width={medium ? "3.6rem" :"24px"}
+				height={medium ? "3.6rem" :"24px"}
 				viewBox="0 0 24 24"
 				id="_24x24_On_Light_Queue-Add"
 				data-name="24x24/On Light/Queue-Add"
