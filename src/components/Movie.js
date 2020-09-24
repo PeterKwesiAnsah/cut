@@ -1,12 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import '../movie.css';
 import Play from './Play';
 import Fav from './Fav';
 import WatchList from './WatchList';
 import { SetItems } from '../App';
-import {useAdded} from '../hooks/useAdded'
+import { useAdded } from '../hooks/useAdded';
+import { Link } from 'react-router-dom';
 
-const Movie = ({ path, id, title, likedMovies, watchLists }) => {
+const Movie = ({ path, id, title }) => {
 	const {
 		setMovieId,
 		setShowTile,
@@ -15,11 +16,18 @@ const Movie = ({ path, id, title, likedMovies, watchLists }) => {
 		setWatchList,
 		watchList,
 	} = useContext(SetItems);
-	const [isLiked]=useAdded(likes,id)
-	const [isWatched]=useAdded(watchList,id)
+
+	const [isLiked] = useAdded(likes, id);
+	const [isWatched] = useAdded(watchList, id);
 	//use to determine if a movie poster is liked or not
-	const [liked, setLiked] = useState(likedMovies || isLiked|| false);
-	const [watched, setWatched] = useState(watchLists || isWatched||false);
+	const [liked, setLiked] = useState(isLiked);
+	const [watched, setWatched] = useState(isWatched);
+
+	if (isLiked && !liked) {
+		setLiked(true);
+	} else if (isWatched && !watched) {
+		setWatched(true);
+	}
 
 	//function determines if a function is Liked or not
 	// const isLiked = () => {
@@ -33,24 +41,23 @@ const Movie = ({ path, id, title, likedMovies, watchLists }) => {
 	// };
 
 	//if state is true and you cant find the movie in the likes array set liked to false
-	if (!likedMovies && !isLiked && liked) {
+	if (!isLiked && liked) {
 		setLiked(false);
-	}
-	else if (!watchLists && !isWatched && watched) {
+	} else if (!isWatched && watched) {
 		setWatched(false);
 	}
 	//liked/watched movies should have the liked/
 
-	//handles the click event
-	const handleClick = (e) => {
-		if (
-			e.target.matches('.movie-poster-box') ||
-			e.target.matches('.movie-poster__filter')
-		) {
-			setMovieId(id);
-			setShowTile(true);
-		}
-	};
+	// //handles the click event
+	// const handleClick = (e) => {
+	// 	if (
+	// 		e.target.matches('.movie-poster-box') ||
+	// 		e.target.matches('.movie-poster__filter')
+	// 	) {
+	// 		setMovieId(id);
+	// 		setShowTile(true);
+	// 	}
+	// };
 
 	//used to set
 	const handleLike = () => {
@@ -95,12 +102,14 @@ const Movie = ({ path, id, title, likedMovies, watchLists }) => {
 	};
 
 	return (
-		<div className="movie-poster-box" onClick={handleClick}>
+		<div className="movie-poster-box" >
 			<img src={path} alt="movie posters" className="movie-poster"></img>
-			<div className="movie-poster__filter"></div>
+			<Link to={`/movie/${id}`}>
+				<div className="movie-poster__filter"></div>
+			</Link>
 			<div className="icon-box">
 				<Fav liked={liked} handleLike={handleLike}></Fav>
-				<WatchList  watched={watched} handleWatch={handleWatch}></WatchList>
+				<WatchList watched={watched} handleWatch={handleWatch}></WatchList>
 				<Play></Play>
 			</div>
 		</div>

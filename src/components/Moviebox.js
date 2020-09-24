@@ -1,7 +1,8 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import '../moviebox.css';
 import Movie from './Movie';
+
 const Moviebox = ({ title, request, imgBase_URL, isLarge, movieP,likedMovies,watchLists }) => {
 	const [movies, setMovies] = useState([]);
 	// const [empty,setEmpty]=useState(t)
@@ -24,10 +25,8 @@ const Moviebox = ({ title, request, imgBase_URL, isLarge, movieP,likedMovies,wat
 			//if there is no request prop....then obviously  there's a  movie prop passed
 			setMovies(movieP);
 		}
-		// if(movieP){
-
-		// }
-	}, [movieP]);
+		
+	}, [movieP,request,isLarge]);
 
 	return (
 		<div className="movie-box">
@@ -45,11 +44,11 @@ const Moviebox = ({ title, request, imgBase_URL, isLarge, movieP,likedMovies,wat
 							></Movie>
 					  ))
 					: movies.map(({ path, id, title }) => (
-							<Movie path={path} key={id} id={id} title={title} likedMovies={likedMovies} watchLists={watchLists}></Movie>
+							<Movie path={path} key={id} id={id} title={title} ></Movie>
 					  ))}
 			</div>
 		</div>
 	);
 };
 
-export default React.memo(Moviebox);
+export default Moviebox;

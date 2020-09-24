@@ -10,8 +10,11 @@ import convertHexToRGBA from '../hexRGB';
 import Playtrailer from './Playtrailer';
 // import { SetItems } from '../App';
 import { useAdded } from '../hooks/useAdded';
+import { Link,useParams } from 'react-router-dom';
 
-const Movietile = ({ id, request, setShowTile, global }) => {
+const Movietile = ({request, global }) => {
+	const { id } = useParams();
+
 	const [url, setURL] = useState('');
 	//Creating a state for movie data from fetch
 	const [movie, setMovie] = useState({});
@@ -78,8 +81,8 @@ const Movietile = ({ id, request, setShowTile, global }) => {
 			</span>
 		));
 
-	//function handles showing the moviePosters
-	const handleClick = () => [setShowTile(false)];
+	// //function handles showing the moviePosters
+	// const handleClick = () => [setShowTile(false)];
 
 	//function handles youtube trailer
 	const handlePlay = () => {
@@ -114,7 +117,10 @@ const Movietile = ({ id, request, setShowTile, global }) => {
 								name={original_title || movie.title || ''}
 							></Playtrailer>
 						)}
-						<Close onClick={handleClick}></Close>
+						<Link to='/'>
+						<Close></Close>
+						</Link>
+					
 						<div className="movie-container">
 							<div
 								className="movie-card"
@@ -131,7 +137,7 @@ const Movietile = ({ id, request, setShowTile, global }) => {
 									</div>
 								</div>
 								<div className="movie-icons">
-									<Fav medium liked={isLiked} handleLike={handleLike}></Fav>
+									<Fav medium liked={isLiked} handleLike={handleLike} id={id}></Fav>
 									<WatchList
 										medium
 										watched={isWatched}

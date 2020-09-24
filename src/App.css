@@ -24,7 +24,7 @@ html{
 .App{
 
   min-height: 100vh;
-  background-image: linear-gradient(to right bottom ,var(--primary),var(--primary-light));
+  background-color: var(--primary);
   /* background-size: cover; */
   /* background-image: url(https://image.tmdb.org/t/p/original/kwUQFeFXOOpgloMgZaadhzkbTI4.jpg); */
 

@@ -4,6 +4,7 @@ const WatchList = ({ watched, handleWatch,medium }) => {
 	return (
 		<>
 			<svg
+				className='svg-watch'
 				onClick={handleWatch}
 				width={medium ? "3.6rem" :"24px"}
 				height={medium ? "3.6rem" :"24px"}
