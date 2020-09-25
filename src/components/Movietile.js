@@ -10,9 +10,11 @@ import convertHexToRGBA from '../hexRGB';
 import Playtrailer from './Playtrailer';
 // import { SetItems } from '../App';
 import { useAdded } from '../hooks/useAdded';
-import { Link,useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import Rightbar from './Rightbar';
+import '../header.css';
 
-const Movietile = ({request, global }) => {
+const Movietile = ({ request, global }) => {
 	const { id } = useParams();
 
 	const [url, setURL] = useState('');
@@ -117,41 +119,51 @@ const Movietile = ({request, global }) => {
 								name={original_title || movie.title || ''}
 							></Playtrailer>
 						)}
-						<Link to='/'>
+						{/* <Link to='/'>
 						<Close></Close>
-						</Link>
-					
+						</Link> */}
+
 						<div className="movie-container">
-							<div
-								className="movie-card"
-								style={{ backgroundImage: `url(${url})` }}
-								alt="movie-card"
-							></div>
-							<div className="movie-desc">
-								<div className="movie-title">
-									<h2 className="movie-title__header">{original_title}</h2>
-									<div className="movie-title__genre">
-										{genres && getGenre(genres)}
-										<span className="movie-period">.</span>
-										<span className="movie-runtime">{runtime} mins</span>
+							<div className="header-row header-row__tile">
+								<Rightbar></Rightbar>
+							</div>
+							<div style={{display:'flex'}}>
+								<div
+									className="movie-card"
+									style={{ backgroundImage: `url(${url})` }}
+									alt="movie-card"
+								></div>
+								<div className="movie-desc">
+									<div className="movie-title">
+										<h2 className="movie-title__header">{original_title}</h2>
+										<div className="movie-title__genre">
+											{genres && getGenre(genres)}
+											<span className="movie-period">.</span>
+											<span className="movie-runtime">{runtime} mins</span>
+										</div>
 									</div>
-								</div>
-								<div className="movie-icons">
-									<Fav medium liked={isLiked} handleLike={handleLike} id={id}></Fav>
-									<WatchList
-										medium
-										watched={isWatched}
-										handleWatch={handleWatch}
-									></WatchList>
-									<div onClick={handlePlay} className="movie-icons__play">
-										<Play medium></Play>
-										<span className="play-text">Play Trailer</span>
+									<div className="movie-icons">
+										<Fav
+											medium
+											liked={isLiked}
+											handleLike={handleLike}
+											id={id}
+										></Fav>
+										<WatchList
+											medium
+											watched={isWatched}
+											handleWatch={handleWatch}
+										></WatchList>
+										<div onClick={handlePlay} className="movie-icons__play">
+											<Play medium></Play>
+											<span className="play-text">Play Trailer</span>
+										</div>
 									</div>
-								</div>
-								<p className="movie-tagline">{tagline}</p>
-								<div className="movie-overview">
-									<h3>Overview</h3>
-									{overview}
+									<p className="movie-tagline">{tagline}</p>
+									<div className="movie-overview">
+										<h3>Overview</h3>
+										{overview}
+									</div>
 								</div>
 							</div>
 						</div>

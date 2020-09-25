@@ -1,0 +1,21 @@
+.navbar-list{
+    display: grid;
+    grid-template-columns: repeat(4,min-content) repeat(2,max-content);
+    gap: 0 3rem;
+    font-size:1.4rem;
+}
+
+.navbar-list li{
+    list-style: none;
+    cursor: pointer;
+}
+
+.link-item{
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 700;
+}
+
+.link-item:not(:visited){
+    color: #e5e5e5;
+}

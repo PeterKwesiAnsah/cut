@@ -1,9 +1,9 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../moviebox.css';
 import Movie from './Movie';
 
-const Moviebox = ({ title, request, imgBase_URL, isLarge, movieP,likedMovies,watchLists }) => {
+const Moviebox = ({ title, request, imgBase_URL, isLarge, movieP, scroll }) => {
 	const [movies, setMovies] = useState([]);
 	// const [empty,setEmpty]=useState(t)
 	useEffect(() => {
@@ -25,14 +25,19 @@ const Moviebox = ({ title, request, imgBase_URL, isLarge, movieP,likedMovies,wat
 			//if there is no request prop....then obviously  there's a  movie prop passed
 			setMovies(movieP);
 		}
-		
-	}, [movieP,request,isLarge]);
+	}, [movieP, request, isLarge]);
 
 	return (
-		<div className="movie-box">
+		<div className={`movie-box ${scroll && 'movie-box__scroll'}`}>
 			<h1 className="movie-box__title">{title}</h1>
 
-			<div className={request ? 'movie-row' : 'movie-row--likes'}>
+			<div
+				className={
+					request
+						? `${!scroll ? 'movie-row' : 'movie-row__scroll'}`
+						: 'movie-row--likes'
+				}
+			>
 				{request
 					? movies.map(({ poster_path, id, original_title }) => (
 							<Movie
@@ -40,11 +45,12 @@ const Moviebox = ({ title, request, imgBase_URL, isLarge, movieP,likedMovies,wat
 								key={id}
 								id={id}
 								title={original_title}
+								scroll={scroll}
 
 							></Movie>
 					  ))
 					: movies.map(({ path, id, title }) => (
-							<Movie path={path} key={id} id={id} title={title} ></Movie>
+							<Movie path={path} key={id} id={id} title={title} scroll={scroll}></Movie>
 					  ))}
 			</div>
 		</div>

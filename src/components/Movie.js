@@ -7,7 +7,7 @@ import { SetItems } from '../App';
 import { useAdded } from '../hooks/useAdded';
 import { Link } from 'react-router-dom';
 
-const Movie = ({ path, id, title }) => {
+const Movie = ({ path, id, title,scroll }) => {
 	const {
 		setMovieId,
 		setShowTile,
@@ -103,7 +103,7 @@ const Movie = ({ path, id, title }) => {
 
 	return (
 		<div className="movie-poster-box" >
-			<img src={path} alt="movie posters" className="movie-poster"></img>
+			<img src={path} alt="movie posters" className={`movie-poster ${scroll && 'movie-poster__scroll'}`}></img>
 			<Link to={`/movie/${id}`}>
 				<div className="movie-poster__filter"></div>
 			</Link>

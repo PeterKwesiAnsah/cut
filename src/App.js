@@ -6,6 +6,8 @@ import Home from './Home';
 import Movietile from './components/Movietile';
 // import Headertile from './components/Headertile';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import MyList from './MyList';
+import MyFav from './MyFavorite';
 const API_KEY = 'dad5bd632b1e04f64447930a6bda5cb3';
 const base_URL = 'https://api.themoviedb.org/3';
 const base_URL_Bulk = 'https://api.themoviedb.org/3/movie';
@@ -62,6 +64,12 @@ const App = () => {
 								request={movieReq}
 								global={{ setLikes, likes, setWatchList, watchList }}
 							></Movietile>
+						</Route>
+						<Route path="/myList">
+							<MyList global={{ watchList, setWatchList }}></MyList>
+						</Route>
+						<Route path="/myFavorite">
+							<MyFav global={{ likes, setLikes }}></MyFav>
 						</Route>
 					</Switch>
 
