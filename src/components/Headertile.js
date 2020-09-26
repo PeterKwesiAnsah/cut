@@ -30,6 +30,7 @@ const Headertile = ({ request, imgBase_URL }) => {
 		return Math.floor(Math.random() * arr.length);
 	};
 	useEffect(() => {
+		let isMounted=true
 		const fetchdata = async () => {
 			const movies = await axios.get(request);
 
@@ -42,13 +43,17 @@ const Headertile = ({ request, imgBase_URL }) => {
 				setStyle({
 					top: '0px',
 					position: 'fixed',
-					backgroundColor: 'rgb(20, 20, 20)',
+					backgroundColor: 'var(--primary)',
 				});
 			} else {
 				setStyle(initStyle);
 			}
 		});
 		fetchdata();
+		return ()=>{
+			window.removeEventListener('scroll',this)
+			isMounted=false
+		}
 	}, []);
 	return (
 		<header

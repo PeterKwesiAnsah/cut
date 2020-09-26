@@ -15,11 +15,13 @@ import Rightbar from './Rightbar';
 import '../header.css';
 
 const Movietile = ({ request, global }) => {
-	const { id } = useParams();
+	const  id  = parseInt(useParams().id);
+	console.log( typeof id)
 
 	const [url, setURL] = useState('');
 	//Creating a state for movie data from fetch
 	const [movie, setMovie] = useState({});
+
 	//deconstructing the movie object for necessary information to render
 	const { original_title, overview, tagline, runtime, genres } = movie;
 
@@ -30,6 +32,28 @@ const Movietile = ({ request, global }) => {
 	//searches for an item with id inside an array of items
 	const [isLiked] = useAdded(likes, id);
 	const [isWatched] = useAdded(watchList, id);
+
+	console.log(isLiked, isWatched);
+	// console.log(
+	// 	likes.includes({ id, path: url, title: original_title })
+	// );
+	// console.log(typeof likes[0].id)
+	// console.table(likes)
+	//use to determine if a movie poster is liked or not
+	// const [liked, setLiked] = useState(isLiked);
+	// const [watched, setWatched] = useState(isWatched);
+
+	// if (isLiked && !liked) {
+	// 	setLiked(true);
+	// } else if (isWatched && !watched) {
+	// 	setWatched(true);
+	// }
+
+	// if (!isLiked && liked) {
+	// 	setLiked(false);
+	// } else if (!isWatched && watched) {
+	// 	setWatched(false);
+	// }
 
 	const handleLike = () => {
 		//if movie is liked,remove it
@@ -127,7 +151,7 @@ const Movietile = ({ request, global }) => {
 							<div className="header-row header-row__tile">
 								<Rightbar></Rightbar>
 							</div>
-							<div style={{display:'flex'}}>
+							<div style={{ display: 'flex' }}>
 								<div
 									className="movie-card"
 									style={{ backgroundImage: `url(${url})` }}

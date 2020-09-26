@@ -29,6 +29,9 @@
 .movie-row:hover > div:not(:hover){
     transform: scale(0.9);
 }
+.movie-row__scroll:hover > div:not(:hover){
+    transform: scale(0.9);
+}
 
 
 .movie-poster__filter{

@@ -33,7 +33,7 @@ const Home = ({ global }) => {
                 // watchLists
             ></Moviebox>
         )} */}
-			<Moviebox
+			{/* <Moviebox
 					title={'Popular Movies'}
 					request={requests.getPopular}
 					imgBase_URL={imgBase_URL}
@@ -50,7 +50,7 @@ const Home = ({ global }) => {
 					title={'In Cinema Now'}
 					request={requests.getNowPlaying}
 					imgBase_URL={imgBase_URL}
-				></Moviebox>
+				></Moviebox> */}
 		</>
 	);
 };

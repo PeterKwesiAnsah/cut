@@ -7,15 +7,8 @@ import { SetItems } from '../App';
 import { useAdded } from '../hooks/useAdded';
 import { Link } from 'react-router-dom';
 
-const Movie = ({ path, id, title,scroll }) => {
-	const {
-		setMovieId,
-		setShowTile,
-		setLikes,
-		likes,
-		setWatchList,
-		watchList,
-	} = useContext(SetItems);
+const Movie = ({ path, id, title, scroll }) => {
+	const { setLikes, likes, setWatchList, watchList } = useContext(SetItems);
 
 	const [isLiked] = useAdded(likes, id);
 	const [isWatched] = useAdded(watchList, id);
@@ -23,11 +16,11 @@ const Movie = ({ path, id, title,scroll }) => {
 	const [liked, setLiked] = useState(isLiked);
 	const [watched, setWatched] = useState(isWatched);
 
-	if (isLiked && !liked) {
-		setLiked(true);
-	} else if (isWatched && !watched) {
-		setWatched(true);
-	}
+	// if (isLiked && !liked) {
+	// 	setLiked(true);
+	// } else if (isWatched && !watched) {
+	// 	setWatched(true);
+	// }
 
 	//function determines if a function is Liked or not
 	// const isLiked = () => {
@@ -41,11 +34,11 @@ const Movie = ({ path, id, title,scroll }) => {
 	// };
 
 	//if state is true and you cant find the movie in the likes array set liked to false
-	if (!isLiked && liked) {
-		setLiked(false);
-	} else if (!isWatched && watched) {
-		setWatched(false);
-	}
+	// if (!isLiked && liked) {
+	// 	setLiked(false);
+	// } else if (!isWatched && watched) {
+	// 	setWatched(false);
+	// }
 	//liked/watched movies should have the liked/
 
 	// //handles the click event
@@ -63,6 +56,7 @@ const Movie = ({ path, id, title,scroll }) => {
 	const handleLike = () => {
 		//if movie is liked,remove it
 		if (liked) {
+			//you can refacter this out i think when you are cleaning up the code
 			setLiked(false);
 			//remove the movie from likes
 			const filterdMovies = likes.filter((movie) => movie.id !== id);
@@ -102,8 +96,12 @@ const Movie = ({ path, id, title,scroll }) => {
 	};
 
 	return (
-		<div className="movie-poster-box" >
-			<img src={path} alt="movie posters" className={`movie-poster ${scroll && 'movie-poster__scroll'}`}></img>
+		<div className="movie-poster-box">
+			<img
+				src={path}
+				alt="movie posters"
+				className={`movie-poster ${scroll && 'movie-poster__scroll'}`}
+			></img>
 			<Link to={`/movie/${id}`}>
 				<div className="movie-poster__filter"></div>
 			</Link>
