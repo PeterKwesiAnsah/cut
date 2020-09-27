@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+
 import './App.css';
 import Home from './Home';
 // import Moviebox from './components/Moviebox';
@@ -8,6 +9,7 @@ import Movietile from './components/Movietile';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import MyList from './MyList';
 import MyFav from './MyFavorite';
+import {useLocal} from './hooks/useLocal'
 const API_KEY = 'dad5bd632b1e04f64447930a6bda5cb3';
 const base_URL = 'https://api.themoviedb.org/3';
 const base_URL_Bulk = 'https://api.themoviedb.org/3/movie';
@@ -33,17 +35,24 @@ const requests = {
 export const SetItems = React.createContext();
 
 const App = () => {
-	const [likes, setLikes] = useState([]);
-	const [watchList, setWatchList] = useState([]);
+	const [initLikes,initWatch]=useLocal('likes','watchList')
+	const [likes, setLikes] = useState(initLikes || []);
+	const [watchList, setWatchList] = useState(initWatch || []);
+	
 
 	//liikes and watchlist should be global and persisted using locale storage
-	//Likes and watchList data will be rendered as a movie-box with their respective tittles
-	/*
-	1.first do it all normally
-	2.if it works then you persit the data
+	useEffect(()=>{
+		//converts the array into string to be be persited in local
+		const stringLikes=JSON.stringify(likes)
+		const stringWatch=JSON.stringify(watchList)
+	
+		localStorage.setItem('likes',stringLikes)
+		localStorage.setItem('watchList',stringWatch)
+		
 
-	*/
-	//use conditional rendering to render each movie poster true/false boolean...true to show the movie and it title ...false to go back to what was being rendered already
+
+	},[likes,watchList])
+
 	return (
 		<SetItems.Provider
 			value={{
