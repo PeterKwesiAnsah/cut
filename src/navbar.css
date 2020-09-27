@@ -12,10 +12,10 @@
 
 .link-item{
     text-decoration: none;
-    color: var(--text);
+    color: var(--tertiary);
     font-weight: 700;
 }
 
-.link-item:not(:visited){
+.active{
     color: #e5e5e5;
 }

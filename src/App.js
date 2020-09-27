@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-
 import './App.css';
 import Home from './Home';
 // import Moviebox from './components/Moviebox';
@@ -9,7 +8,7 @@ import Movietile from './components/Movietile';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import MyList from './MyList';
 import MyFav from './MyFavorite';
-import {useLocal} from './hooks/useLocal'
+import { useLocal } from './hooks/useLocal';
 const API_KEY = 'dad5bd632b1e04f64447930a6bda5cb3';
 const base_URL = 'https://api.themoviedb.org/3';
 const base_URL_Bulk = 'https://api.themoviedb.org/3/movie';
@@ -35,23 +34,19 @@ const requests = {
 export const SetItems = React.createContext();
 
 const App = () => {
-	const [initLikes,initWatch]=useLocal('likes','watchList')
+	const [initLikes, initWatch] = useLocal('likes', 'watchList');
 	const [likes, setLikes] = useState(initLikes || []);
 	const [watchList, setWatchList] = useState(initWatch || []);
-	
 
 	//liikes and watchlist should be global and persisted using locale storage
-	useEffect(()=>{
+	useEffect(() => {
 		//converts the array into string to be be persited in local
-		const stringLikes=JSON.stringify(likes)
-		const stringWatch=JSON.stringify(watchList)
-	
-		localStorage.setItem('likes',stringLikes)
-		localStorage.setItem('watchList',stringWatch)
-		
+		const stringLikes = JSON.stringify(likes);
+		const stringWatch = JSON.stringify(watchList);
 
-
-	},[likes,watchList])
+		localStorage.setItem('likes', stringLikes);
+		localStorage.setItem('watchList', stringWatch);
+	}, [likes, watchList]);
 
 	return (
 		<SetItems.Provider
@@ -65,9 +60,6 @@ const App = () => {
 			<Router>
 				<main className="App">
 					<Switch>
-						<Route path="/" exact>
-							<Home global={{ requests, imgBase_URL, likes, watchList }}></Home>
-						</Route>
 						<Route path="/movie/:id">
 							<Movietile
 								request={movieReq}
@@ -79,6 +71,9 @@ const App = () => {
 						</Route>
 						<Route path="/myFavorite">
 							<MyFav global={{ likes, setLikes }}></MyFav>
+						</Route>
+						<Route path="/" exact>
+							<Home global={{ requests, imgBase_URL, likes, watchList }}></Home>
 						</Route>
 					</Switch>
 
