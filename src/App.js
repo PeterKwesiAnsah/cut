@@ -8,7 +8,9 @@ import Movietile from './components/Movietile';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import MyList from './MyList';
 import MyFav from './MyFavorite';
+
 import { useLocal } from './hooks/useLocal';
+import Search from './Search';
 const API_KEY = 'dad5bd632b1e04f64447930a6bda5cb3';
 const base_URL = 'https://api.themoviedb.org/3';
 const base_URL_Bulk = 'https://api.themoviedb.org/3/movie';
@@ -38,6 +40,12 @@ const App = () => {
 	const [likes, setLikes] = useState(initLikes || []);
 	const [watchList, setWatchList] = useState(initWatch || []);
 
+	//state to handle search
+	const [search,setSearch]=useState('')
+
+		//state is used to show or hide bars
+		const [hide, sethide] = useState(true);
+
 	//liikes and watchlist should be global and persisted using locale storage
 	useEffect(() => {
 		//converts the array into string to be be persited in local
@@ -55,11 +63,19 @@ const App = () => {
 				likes,
 				setWatchList,
 				watchList,
+				search,
+				setSearch,
+				hide,
+				sethide
+				
 			}}
 		>
 			<Router>
 				<main className="App">
 					<Switch>
+						<Route path="/search">
+							<Search></Search>
+						</Route>
 						<Route path="/movie/:id">
 							<Movietile
 								request={movieReq}

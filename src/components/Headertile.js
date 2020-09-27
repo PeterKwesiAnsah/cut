@@ -2,11 +2,16 @@ import React, { useState, useEffect } from 'react';
 import '../header.css';
 import axios from 'axios';
 import Rightbar from './Rightbar';
+import Leftbar from './Leftbar'
 import Fav from './Fav'
 import Play from './Play'
 import WatchList from './WatchList'
 
 const Headertile = ({ request, imgBase_URL }) => {
+/*
+nice header Ids=89641
+*/
+
 	//state for the header
 	const [header, setHeader] = useState({});
 
@@ -62,6 +67,7 @@ const Headertile = ({ request, imgBase_URL }) => {
 		>
 			<div style={style} className="header-row">
 				<Rightbar></Rightbar>
+				<Leftbar></Leftbar>
 			</div>
 			<div className="header-wrapper">
 				<div className="header-desc">

@@ -11,12 +11,12 @@ const Home = ({ global }) => {
 				imgBase_URL={imgBase_URL}
 			></Headertile>
 			{/* <h1 className="logo-title">Find the right movie for you ..... </h1> */}
-			<Moviebox
+			{/* <Moviebox
 				title={'Upcoming Movies'}
 				request={requests.getUpcoming}
                 imgBase_URL={imgBase_URL}
                 scroll
-			></Moviebox>
+			></Moviebox> */}
 			{/* {likes && (
             <Moviebox
                 title={'My Favorite'}

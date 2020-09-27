@@ -12,6 +12,8 @@ import Playtrailer from './Playtrailer';
 import { useAdded } from '../hooks/useAdded';
 import { Link, useParams } from 'react-router-dom';
 import Rightbar from './Rightbar';
+
+
 import '../header.css';
 
 const Movietile = ({ request, global }) => {
@@ -150,6 +152,7 @@ const Movietile = ({ request, global }) => {
 						<div className="movie-container">
 							<div className="header-row header-row__tile">
 								<Rightbar></Rightbar>
+							
 							</div>
 							<div style={{ display: 'flex' }}>
 								<div
