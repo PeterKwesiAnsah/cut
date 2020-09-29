@@ -13,9 +13,14 @@
 .link-item{
     text-decoration: none;
     color: var(--tertiary);
+    transition: all .5s;
   
 }
 
+.link-item:hover{
+    color: var(--text);
+}
+
 .active{
-    color: #e5e5e5;
+    color: var(--text);
 }

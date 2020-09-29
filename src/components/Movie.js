@@ -5,10 +5,12 @@ import Fav from './Fav';
 import WatchList from './WatchList';
 import { SetItems } from '../App';
 import { useAdded } from '../hooks/useAdded';
-import { Link } from 'react-router-dom';
+import { Link,useLocation } from 'react-router-dom';
 
 const Movie = ({ path, id, title, scroll }) => {
-	const { setLikes, likes, setWatchList, watchList } = useContext(SetItems);
+	//gets me the current url's pathname 
+		const {pathname}=useLocation()
+	const { setLikes, likes, setWatchList, watchList ,searchType} = useContext(SetItems);
 
 	const [isLiked] = useAdded(likes, id);
 	const [isWatched] = useAdded(watchList, id);
@@ -94,15 +96,19 @@ const Movie = ({ path, id, title, scroll }) => {
 
 		//setLikes([...likes,{id,title,path}])
 	};
+	//if the imgage source is  null don't render
 
 	return (
-		<div className="movie-poster-box">
+		<>
+		{ (!path.includes('undefined') && !path.includes('null') ) &&
+			<>
+			<div className="movie-poster-box">
 			<img
 				src={path}
 				alt="movie posters"
 				className={`movie-poster ${scroll && 'movie-poster__scroll'}`}
 			></img>
-			<Link to={`/movie/${id}`}>
+			<Link to={`/${searchType}/${id}`}>
 				<div className="movie-poster__filter"></div>
 			</Link>
 			<div className="icon-box">
@@ -111,6 +117,12 @@ const Movie = ({ path, id, title, scroll }) => {
 				<Play></Play>
 			</div>
 		</div>
+		</>
+		}
+		</>
+		
+	
+		
 	);
 };
 

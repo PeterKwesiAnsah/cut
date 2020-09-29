@@ -4,10 +4,12 @@ import './App.css';
 import Home from './Home';
 // import Moviebox from './components/Moviebox';
 import Movietile from './components/Movietile';
+import Tvtile from './components/Tvtile';
 // import Headertile from './components/Headertile';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import MyList from './MyList';
 import MyFav from './MyFavorite';
+import Series from './Series';
 
 import { useLocal } from './hooks/useLocal';
 import Search from './Search';
@@ -15,22 +17,32 @@ const API_KEY = 'dad5bd632b1e04f64447930a6bda5cb3';
 const base_URL = 'https://api.themoviedb.org/3';
 const base_URL_Bulk = 'https://api.themoviedb.org/3/movie';
 const imgBase_URL = 'https://image.tmdb.org/t/p/original';
-const movieReq = (movieID) => `${base_URL}/movie/${movieID}?api_key=${API_KEY}`;
-const query = '';
+const getItem = (ID,type) => `${base_URL}/${type}/${ID}?api_key=${API_KEY}`;
+const tvReq = (tvID) => `${base_URL}/tv/${tvID}?api_key=${API_KEY}`;
+const searchQuery = (query,type) =>
+	`${base_URL}/search/${type}?query=${encodeURIComponent(
+		query
+	)}&api_key=${API_KEY}`;
+// const tvSearch = (query) =>
+// 	`${base_URL}/search/tv?query=${encodeURIComponent(query)}&api_key=${API_KEY}`;
 
 //const imgBase_URL="https://image.tmdb.org/t/p/original/kwUQFeFXOOpgloMgZaadhzkbTI4.jpg"
 
 const requests = {
-	queryMovies: `${base_URL}/search/movie?query=${encodeURIComponent(
-		query
-	)}&api_key=${API_KEY}`,
-
 	getUpcoming: `${base_URL_Bulk}/upcoming?api_key=${API_KEY}`,
 	getPopular: `${base_URL_Bulk}/now_playing?api_key=${API_KEY}`,
 	getNowPlaying: `${base_URL_Bulk}/popular?api_key=${API_KEY}`,
 	getTrending: ` ${base_URL}/trending/all/day?api_key=${API_KEY}`,
 	getTvPopular: `${base_URL}/tv/popular?api_key=${API_KEY}&language=en-US&page=1`,
 	getNeflixOriginals: `${base_URL}/discover/tv?api_key=${API_KEY}&with_networks=213`,
+};
+
+const tvRequests = {
+	getLatest: `${base_URL}/tv/latest?api_key=${API_KEY}&language=en-US`,
+	getAirToday: `${base_URL}/tv/airing_today?api_key=${API_KEY}&language=en-US&page=1`,
+	getTvPopular: `${base_URL}/tv/popular?api_key=${API_KEY}&language=en-US&page=1`,
+	getTopRated: `${base_URL}/tv/top_rated?api_key=${API_KEY}&language=en-US&page=1`,
+	getAiring: `${base_URL}/tv/on_the_air?api_key=${API_KEY}&language=en-US&page=1`,
 };
 
 export const SetItems = React.createContext();
@@ -41,10 +53,13 @@ const App = () => {
 	const [watchList, setWatchList] = useState(initWatch || []);
 
 	//state to handle search
-	const [search,setSearch]=useState('')
+	const [search, setSearch] = useState('');
 
-		//state is used to show or hide bars
-		const [hide, sethide] = useState(true);
+	//use to determine the type of search request to provide
+	const [searchType, setSearchType] = useState('movie');
+
+	//state is used to show or hide bars
+	const [hide, sethide] = useState(true);
 
 	//liikes and watchlist should be global and persisted using locale storage
 	useEffect(() => {
@@ -66,27 +81,46 @@ const App = () => {
 				search,
 				setSearch,
 				hide,
-				sethide
-				
+				sethide,
+				searchType,
+				setSearchType,
 			}}
 		>
 			<Router>
 				<main className="App">
 					<Switch>
 						<Route path="/search">
-							<Search></Search>
+							<Search
+								global={{ imgBase_URL }}
+								request={searchQuery(search,searchType)}
+								type={searchType}
+							></Search>
 						</Route>
 						<Route path="/movie/:id">
 							<Movietile
-								request={movieReq}
+								request={getItem}
 								global={{ setLikes, likes, setWatchList, watchList }}
+								type={searchType}
 							></Movietile>
 						</Route>
+						<Route path="/tv/:id">
+							<Tvtile
+								request={getItem}
+								global={{ setLikes, likes, setWatchList, watchList }}
+								type={searchType}
+							></Tvtile>
+						</Route>
+
 						<Route path="/myList">
 							<MyList global={{ watchList, setWatchList }}></MyList>
 						</Route>
 						<Route path="/myFavorite">
 							<MyFav global={{ likes, setLikes }}></MyFav>
+						</Route>
+						<Route path="/series">
+							<Series
+								global={{ tvRequests, imgBase_URL, likes, watchList }}
+							></Series>
 						</Route>
 						<Route path="/" exact>
 							<Home global={{ requests, imgBase_URL, likes, watchList }}></Home>

@@ -21,7 +21,7 @@ nice header Ids=89641
 		backgroundColor: 'transparent',
 	};
 	const [style, setStyle] = useState(initStyle);
-	const { name, overview, poster_path } = header;
+	const { name, overview ,backdrop_path} = header;
 
 	//function truncate string and returns .......
 	const truncate = (str, n) => {
@@ -54,7 +54,11 @@ nice header Ids=89641
 				setStyle(initStyle);
 			}
 		});
-		fetchdata();
+		//this allows you to only fetch data when the component is mounted
+		if(isMounted){
+			fetchdata();
+		}
+		
 		return ()=>{
 			window.removeEventListener('scroll',this)
 			isMounted=false
@@ -62,7 +66,7 @@ nice header Ids=89641
 	}, []);
 	return (
 		<header
-			style={{ backgroundImage: `url(${imgBase_URL + poster_path})` }}
+			style={{ backgroundImage: `url(${imgBase_URL + backdrop_path})` }}
 			className="header"
 		>
 			<div style={style} className="header-row">

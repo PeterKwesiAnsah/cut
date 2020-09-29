@@ -16,10 +16,9 @@ import Rightbar from './Rightbar';
 
 import '../header.css';
 
-const Movietile = ({ request, global,type }) => {
+const Tvtile = ({ request, global,type }) => {
 
-	//gets me the current url's pathname 
-	const {pathname}=useLocation()
+
 	//movie tile needs work
 	const  id  = parseInt(useParams().id);
 	const [url, setURL] = useState('');
@@ -27,7 +26,7 @@ const Movietile = ({ request, global,type }) => {
 	const [movie, setMovie] = useState({});
 
 	//deconstructing the movie object for necessary information to render
-	const { original_title, overview, tagline, runtime, genres } = movie;
+	const { name, overview, tagline, runtime, genres } = movie;
 
 	//State to show movie Trailer or not
 	const [showTrailer, setShowTrailer] = useState(false);
@@ -68,7 +67,7 @@ const Movietile = ({ request, global,type }) => {
 		//if movie is not liked,add it
 		else {
 			//add the movie to the likes
-			setLikes([...likes, { id, title: original_title, path: url }]);
+			setLikes([...likes, { id, title: name, path: url }]);
 		}
 
 		//setLikes([...likes,{id,title:original_title,path:url}])
@@ -87,7 +86,7 @@ const Movietile = ({ request, global,type }) => {
 		//if movie is  not added to the watch,add it
 		else {
 			//add the movie to the watchList
-			setWatchList([...watchList, { id, title: original_title, path: url }]);
+			setWatchList([...watchList, { id, title: name, path: url }]);
 		}
 
 		//setLikes([...likes,{id,title:original_title,path:url}])
@@ -142,7 +141,7 @@ const Movietile = ({ request, global,type }) => {
 						{showTrailer && (
 							<Playtrailer
 								showTrailer={setShowTrailer}
-								name={original_title || movie.title || ''}
+								name={name || movie.title || ''}
 							></Playtrailer>
 						)}
 						{/* <Link to='/'>
@@ -162,7 +161,7 @@ const Movietile = ({ request, global,type }) => {
 								></div>
 								<div className="movie-desc">
 									<div className="movie-title">
-										<h2 className="movie-title__header">{original_title}</h2>
+										<h2 className="movie-title__header">{name}</h2>
 										<div className="movie-title__genre">
 											{genres && getGenre(genres)}
 											<span className="movie-period">.</span>
@@ -201,4 +200,4 @@ const Movietile = ({ request, global,type }) => {
 	);
 };
 
-export default React.memo(Movietile);
+export default React.memo(Tvtile);

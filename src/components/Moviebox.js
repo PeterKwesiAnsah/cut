@@ -3,7 +3,15 @@ import axios from 'axios';
 import '../moviebox.css';
 import Movie from './Movie';
 
-const Moviebox = ({ title, request, imgBase_URL, isLarge, movieP, scroll }) => {
+const Moviebox = ({
+	title,
+	request,
+	imgBase_URL,
+	isLarge,
+	movieP,
+	scroll,
+	search,
+}) => {
 	const [movies, setMovies] = useState([]);
 	// const [empty,setEmpty]=useState(t)
 	useEffect(() => {
@@ -33,7 +41,7 @@ const Moviebox = ({ title, request, imgBase_URL, isLarge, movieP, scroll }) => {
 
 			<div
 				className={
-					request
+					request && !search
 						? `${!scroll ? 'movie-row' : 'movie-row__scroll'}`
 						: 'movie-row--likes'
 				}
@@ -46,11 +54,16 @@ const Moviebox = ({ title, request, imgBase_URL, isLarge, movieP, scroll }) => {
 								id={id}
 								title={original_title}
 								scroll={scroll}
-
 							></Movie>
 					  ))
 					: movies.map(({ path, id, title }) => (
-							<Movie path={path} key={id} id={id} title={title} scroll={scroll}></Movie>
+							<Movie
+								path={path}
+								key={id}
+								id={id}
+								title={title}
+								scroll={scroll}
+							></Movie>
 					  ))}
 			</div>
 		</div>

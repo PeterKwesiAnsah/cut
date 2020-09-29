@@ -1,11 +1,26 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
 import { ReactComponent as Magni } from '../magni.svg';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { SetItems } from '../App';
 
 const Leftbar = () => {
+
+
 	//Get the global search query and it's handler
-	const { search, setSearch, hide, sethide } = useContext(SetItems);
+	const { search, setSearch, hide, sethide,searchType,setSearchType } = useContext(SetItems);
+
+
+
+	//gets me the current url's pathname
+	const { pathname } = useLocation();
+		if(pathname ==='/'){
+			setSearchType('movie')
+
+		}
+		else if(pathname === '/series'){
+			setSearchType('tv')
+
+		}
 
 	//creating a ref for the input Element
 	const inputEl = useRef();
@@ -32,10 +47,13 @@ const Leftbar = () => {
 
 	//if the value is not empty auto focus it using useRef
 	useEffect(() => {
-		if (inputEl.current.value) {
+		if (pathname === '/search') {
 			inputEl.current.focus();
+		} else {
+			sethide(true);
+			setSearch('');
 		}
-	}, []);
+	}, [pathname]);
 
 	//onchange is going change the url by a string
 
@@ -44,7 +62,9 @@ const Leftbar = () => {
 			<Magni onClick={handleClick}></Magni>
 			<input
 				type="text"
-				placeholder="Search for your movies,tv shows....."
+				placeholder={`Search for your ${
+					pathname === '/series' ? 'Tv show' : 'Movies'
+				}.....`}
 				className={hide ? 'hide' : 'show'}
 				onChange={handleChange}
 				value={search}
