@@ -7,7 +7,7 @@ const Series = ({ global }) => {
 	return (
 		<>
 			<Headertile
-				request={tvRequests.getAirToday}
+				request={tvRequests.getTvPopular}
 				imgBase_URL={imgBase_URL}
 			></Headertile>
 			{/* <h1 className="logo-title">Find the right movie for you ..... </h1> */}

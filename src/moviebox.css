@@ -6,7 +6,7 @@
 }
 .movie-box__title {
 	color: var(--text);
-	margin-bottom: 2rem;
+	margin-bottom: 4rem;
 }
 
 .movie-row--likes {

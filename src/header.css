@@ -69,7 +69,7 @@
 	align-items: flex-start;
 }
 
-.search-box{
+.search-box {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -77,35 +77,37 @@
 	cursor: pointer;
 }
 
-.search-box input{
-    color: #fff;
-    display: inline-block;
-    background: 0 0;
-    border: none;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: .9rem 2rem .9rem 3rem;
-    font-size: 1.4rem;
-    width: 28rem;
+.search-box input {
+	color: #fff;
+	display: inline-block;
+	background: 0 0;
+	border: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0.9rem 2rem 0.9rem 3rem;
+	font-size: 1.4rem;
+	width: 28rem;
 	outline: 0;
-	background-color:rgba(37, 37, 37, 0.61);
-	transition: all .3s;
+	background-color: rgba(37, 37, 37, 0.61);
+	transition: all 0.3s;
 	transform-origin: right;
 	border-radius: 0.5rem;
-
 }
 
-.search-box svg{
+.search-box svg {
 	margin-right: -2.2rem;
 	z-index: 1;
-
 }
-.hide{
+.hide {
 	transform: scaleX(0);
 }
-.show{
+.show {
 	transform: scaleX(1);
+}
+.season-text {
+	font-size: 3rem;
+	font-weight: 300;
 }
 
 /* .header-filter {
@@ -177,6 +179,84 @@ image wrapper
 	);
 }
 
-.header-overview{
+.header-overview {
 	width: 50%;
 }
+.header-overview__text {
+	font-weight: 300;
+}
+.header__title {
+	font-weight: normal;
+}
+.header-btns__box {
+	display: grid;
+	grid-template-columns: repeat(3, max-content);
+	gap: 0 1.5rem;
+	transition: all 0.3s;
+}
+
+.btn {
+	border: none;
+	padding: 1rem;
+	border-radius: 0.3rem;
+	background-color: transparent;
+	margin-top: 2.5rem;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 700;
+	outline: none;
+	color: rgb(20, 20, 20);
+	transition: all 0.3s;
+}
+
+.btn--white {
+	background-color: rgb(255, 255, 255);
+}
+
+.btn--grey {
+	background-color: rgba(187, 186, 186, 0.15);
+	color: var(--text);
+}
+.btn--black {
+	color: var(--text);
+	background-color: rgb(20, 20, 20);
+}
+.header-btns__box a {
+	text-decoration: none;
+}
+/* .header-btns__box:hover > *:not(:hover){
+transform: scale(0.9);
+} */
+.header-btns__box > * {
+	transition: all 0.3s;
+	backface-visibility: none;
+	-webkit-font-smoothing: antialised;
+	transform: translateZ(0);
+}
+.header-btns__box > *:hover {
+	transform: translateY(-0.5rem);
+
+}
+
+/* .header-btns__box > *{
+	transform: translateZ(0);
+}  */
+
+/* .btn--white:hover{
+	background-color:rgb(20,20,20);
+	color:rgb(255, 255, 255);
+
+}
+.btn--grey:hover{
+background-color: var(--text);
+color:rgba(187, 186, 186,0.15) ;
+
+}
+
+.btn--black:hover{
+	background-color: var(--text);
+	color:rgb(20,20,20) ;
+
+} */

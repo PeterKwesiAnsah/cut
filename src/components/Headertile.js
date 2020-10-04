@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import '../header.css';
 import axios from 'axios';
 import Rightbar from './Rightbar';
-import Leftbar from './Leftbar'
-import Fav from './Fav'
-import Play from './Play'
-import WatchList from './WatchList'
+import Leftbar from './Leftbar';
+import {Link} from 'react-router-dom'
+import { SetItems } from '../App';
+// import Fav from './Fav';
+//  import Play from './Play';
+//  import WatchList from './WatchList';
 
 const Headertile = ({ request, imgBase_URL }) => {
-/*
+	/*
 nice header Ids=89641
 */
-
+const {searchType } = useContext(
+	SetItems
+);
 	//state for the header
 	const [header, setHeader] = useState({});
 
@@ -21,7 +25,7 @@ nice header Ids=89641
 		backgroundColor: 'transparent',
 	};
 	const [style, setStyle] = useState(initStyle);
-	const { name, overview ,backdrop_path} = header;
+	const { id,name, overview, backdrop_path ,title} = header;
 
 	//function truncate string and returns .......
 	const truncate = (str, n) => {
@@ -35,7 +39,7 @@ nice header Ids=89641
 		return Math.floor(Math.random() * arr.length);
 	};
 	useEffect(() => {
-		let isMounted=true
+		let isMounted = true;
 		const fetchdata = async () => {
 			const movies = await axios.get(request);
 
@@ -55,48 +59,56 @@ nice header Ids=89641
 			}
 		});
 		//this allows you to only fetch data when the component is mounted
-		if(isMounted){
+		if (isMounted) {
 			fetchdata();
 		}
-		
-		return ()=>{
-			window.removeEventListener('scroll',this)
-			isMounted=false
-		}
+
+		return () => {
+			window.removeEventListener('scroll', this);
+			isMounted = false;
+		};
 	}, []);
 	return (
-		<header
-			style={{ backgroundImage: `url(${imgBase_URL + backdrop_path})` }}
-			className="header"
-		>
-			<div style={style} className="header-row">
-				<Rightbar></Rightbar>
-				<Leftbar></Leftbar>
-			</div>
-			<div className="header-wrapper">
-				<div className="header-desc">
-					<h2 className="header__title">{name}</h2>
-					{/* <div className="movie-icons">
-									<Fav medium liked={isLiked} handleLike={handleLike} id={id}></Fav>
-									<WatchList
-										medium
-										watched={isWatched}
-										handleWatch={handleWatch}
-									></WatchList>
-									<div onClick={handlePlay} className="movie-icons__play">
-										<Play medium></Play>
-										<span className="play-text">Play Trailer</span>
-									</div>
-								</div> */}
-								<div className="header-overview">
-								<p className="header-overview__text">{truncate(overview, 150)}</p>
-								</div>
+		<>
+			{backdrop_path && (
+					<>
+						<header
+							style={{ backgroundImage: `url(${imgBase_URL + backdrop_path})` }}
+							className="header"
+						>
+							<div style={style} className="header-row">
+								<Rightbar></Rightbar>
+								<Leftbar></Leftbar>
+							</div>
+							<div className="header-wrapper">
+								<div className="header-desc">
+									<h2 className="header__title">{name || title}</h2>
 					
-				</div>
-			</div>
-			<div className='header-filter'></div>
-		</header>
+									<div className="header-overview">
+										<p className="header-overview__text">
+											{truncate(overview, 150)}
+										</p>
+									</div>
+									<div className='header-btns__box'>
+									<button className='btn btn--white'>Play Trailer</button>
+									<Link  to={`/${searchType}/${id}`}>
+									<button className='btn btn--grey'>More Info</button>
+									</Link>
+									<Link  to='/myList'>
+									<button className='btn btn--black'>My List</button>
+									</Link>
+				
+								
+
+									</div>
+								</div>
+							</div>
+							<div className="header-filter"></div>
+						</header>
+					</>
+				)}
+		</>
 	);
 };
-
 export default React.memo(Headertile);
+

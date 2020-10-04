@@ -13,14 +13,7 @@ const Leftbar = () => {
 
 	//gets me the current url's pathname
 	const { pathname } = useLocation();
-		if(pathname ==='/'){
-			setSearchType('movie')
-
-		}
-		else if(pathname === '/series'){
-			setSearchType('tv')
-
-		}
+	
 
 	//creating a ref for the input Element
 	const inputEl = useRef();
@@ -53,6 +46,15 @@ const Leftbar = () => {
 			sethide(true);
 			setSearch('');
 		}
+
+		if(pathname ==='/'){
+			setSearchType('movie')
+
+		}
+		else if(pathname === '/series'){
+			setSearchType('tv')
+
+		}
 	}, [pathname]);
 
 	//onchange is going change the url by a string
@@ -63,7 +65,7 @@ const Leftbar = () => {
 			<input
 				type="text"
 				placeholder={`Search for your ${
-					pathname === '/series' ? 'Tv show' : 'Movies'
+					searchType === 'tv' ? 'Tv show' : 'Movies'
 				}.....`}
 				className={hide ? 'hide' : 'show'}
 				onChange={handleChange}

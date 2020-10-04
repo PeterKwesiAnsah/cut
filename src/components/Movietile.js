@@ -5,29 +5,36 @@ import { Palette } from 'react-palette';
 import Play from './Play';
 import Fav from './Fav';
 import WatchList from './WatchList';
-import { ReactComponent as Close } from './close.svg';
+// import { ReactComponent as Close } from './close.svg';
 import convertHexToRGBA from '../hexRGB';
 import Playtrailer from './Playtrailer';
 // import { SetItems } from '../App';
 import { useAdded } from '../hooks/useAdded';
-import { Link, useParams,useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Rightbar from './Rightbar';
-
+import Leftbar from './Leftbar';
 
 import '../header.css';
 
-const Movietile = ({ request, global,type }) => {
-
-	//gets me the current url's pathname 
-	const {pathname}=useLocation()
+const Movietile = ({ request, global, type }) => {
+	//gets me the current url's pathname
+	// const {pathname}=useLocation()
 	//movie tile needs work
-	const  id  = parseInt(useParams().id);
-	const [url, setURL] = useState('');
+	const id = parseInt(useParams().id);
+	// const [url, setURL] = useState('');
 	//Creating a state for movie data from fetch
 	const [movie, setMovie] = useState({});
 
 	//deconstructing the movie object for necessary information to render
-	const { original_title, overview, tagline, runtime, genres } = movie;
+	const {
+		original_title,
+		overview,
+		tagline,
+		runtime,
+		genres,
+		backdrop_path,
+		poster_path,
+	} = movie;
 
 	//State to show movie Trailer or not
 	const [showTrailer, setShowTrailer] = useState(false);
@@ -68,7 +75,14 @@ const Movietile = ({ request, global,type }) => {
 		//if movie is not liked,add it
 		else {
 			//add the movie to the likes
-			setLikes([...likes, { id, title: original_title, path: url }]);
+			setLikes([
+				...likes,
+				{
+					id,
+					title: original_title,
+					path: `https://image.tmdb.org/t/p/original${poster_path}`,
+				},
+			]);
 		}
 
 		//setLikes([...likes,{id,title:original_title,path:url}])
@@ -87,7 +101,14 @@ const Movietile = ({ request, global,type }) => {
 		//if movie is  not added to the watch,add it
 		else {
 			//add the movie to the watchList
-			setWatchList([...watchList, { id, title: original_title, path: url }]);
+			setWatchList([
+				...watchList,
+				{
+					id,
+					title: original_title,
+					path: `https://image.tmdb.org/t/p/original${poster_path}`,
+				},
+			]);
 		}
 
 		//setLikes([...likes,{id,title:original_title,path:url}])
@@ -95,9 +116,9 @@ const Movietile = ({ request, global,type }) => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const movie = await axios.get(request(id,type));
+			const movie = await axios.get(request(id, type));
 			setMovie(movie.data);
-			setURL(`https://image.tmdb.org/t/p/original${movie.data.poster_path}`);
+			// setURL(`https://image.tmdb.org/t/p/original${poster_path}`);
 		};
 		fetchData();
 	}, []);
@@ -118,7 +139,11 @@ const Movietile = ({ request, global,type }) => {
 	};
 
 	return (
-		<Palette src={url}>
+		<Palette
+			src={
+				poster_path ? `https://image.tmdb.org/t/p/original${poster_path}` : ''
+			}
+		>
 			{({ data, loading, error }) => {
 				const { darkMuted, darkVibrant, lightMuted, lightVibrant } = data;
 
@@ -135,7 +160,13 @@ const Movietile = ({ request, global,type }) => {
 				return (
 					<div
 						style={{
-							backgroundImage: `linear-gradient(to right,${rgba.darkMuted},${rgba.lightVibrant}),url(${url})`,
+							backgroundImage: `linear-gradient(to right,${rgba.darkMuted},${
+								rgba.lightVibrant
+							}),url(${
+								backdrop_path
+									? `https://image.tmdb.org/t/p/original${backdrop_path}`
+									: ''
+							})`,
 						}}
 						className="movie-tile"
 					>
@@ -152,12 +183,18 @@ const Movietile = ({ request, global,type }) => {
 						<div className="movie-container">
 							<div className="header-row header-row__tile">
 								<Rightbar></Rightbar>
-							
+								<Leftbar></Leftbar>
 							</div>
 							<div style={{ display: 'flex' }}>
 								<div
 									className="movie-card"
-									style={{ backgroundImage: `url(${url})` }}
+									style={{
+										backgroundImage: `url(${
+											poster_path
+												? `https://image.tmdb.org/t/p/original${poster_path}`
+												: ''
+										})`,
+									}}
 									alt="movie-card"
 								></div>
 								<div className="movie-desc">

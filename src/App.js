@@ -6,7 +6,7 @@ import Home from './Home';
 import Movietile from './components/Movietile';
 import Tvtile from './components/Tvtile';
 // import Headertile from './components/Headertile';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import MyList from './MyList';
 import MyFav from './MyFavorite';
 import Series from './Series';
@@ -18,7 +18,7 @@ const base_URL = 'https://api.themoviedb.org/3';
 const base_URL_Bulk = 'https://api.themoviedb.org/3/movie';
 const imgBase_URL = 'https://image.tmdb.org/t/p/original';
 const getItem = (ID,type) => `${base_URL}/${type}/${ID}?api_key=${API_KEY}`;
-const tvReq = (tvID) => `${base_URL}/tv/${tvID}?api_key=${API_KEY}`;
+// const tvReq = (tvID) => `${base_URL}/tv/${tvID}?api_key=${API_KEY}`;
 const searchQuery = (query,type) =>
 	`${base_URL}/search/${type}?query=${encodeURIComponent(
 		query
@@ -48,6 +48,7 @@ const tvRequests = {
 export const SetItems = React.createContext();
 
 const App = () => {
+	//hook returns an array of persisted likes/watchList in the Local storage API
 	const [initLikes, initWatch] = useLocal('likes', 'watchList');
 	const [likes, setLikes] = useState(initLikes || []);
 	const [watchList, setWatchList] = useState(initWatch || []);
@@ -86,7 +87,7 @@ const App = () => {
 				setSearchType,
 			}}
 		>
-			<Router>
+			<>
 				<main className="App">
 					<Switch>
 						<Route path="/search">
@@ -159,7 +160,7 @@ const App = () => {
 		
 		)} */}
 				</main>
-			</Router>
+			</>
 		</SetItems.Provider>
 	);
 };

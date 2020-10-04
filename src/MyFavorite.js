@@ -2,6 +2,7 @@ import React from 'react';
 import Rightbar from './components/Rightbar';
 import Leftbar from './components/Leftbar';
 import Moviebox from './components/Moviebox';
+import Nodata from './components/Nodata';
 import './header.css';
 
 const MyFav = ({global}) => {
@@ -13,7 +14,9 @@ const MyFav = ({global}) => {
 				<Rightbar></Rightbar>
                 <Leftbar></Leftbar>
 			</div>
-            {likes && (
+            {likes.length === 0 ? (
+				<Nodata>No movie was found in my favorite.</Nodata>
+			) :  (
             <Moviebox
                 title={'My Favorite'}
                 movieP={likes}
