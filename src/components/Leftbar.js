@@ -51,7 +51,7 @@ const Leftbar = () => {
 			setSearchType('movie')
 
 		}
-		else if(pathname === '/series'){
+		else if(pathname === '/series' || pathname === '/netflixTV'){
 			setSearchType('tv')
 
 		}

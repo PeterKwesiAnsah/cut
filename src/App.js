@@ -10,6 +10,7 @@ import { Switch, Route } from 'react-router-dom';
 import MyList from './MyList';
 import MyFav from './MyFavorite';
 import Series from './Series';
+import Netflix from './Netflix';
 
 import { useLocal } from './hooks/useLocal';
 import Search from './Search';
@@ -45,10 +46,10 @@ const requests = {
 
 const tvRequests = {
 	getLatest: `${base_URL}/tv/latest?api_key=${API_KEY}&language=en-US`,
-	getAirToday: `${base_URL}/tv/airing_today?api_key=${API_KEY}&language=en-US&page=1`,
+	// getAirToday: `${base_URL}/tv/airing_today?api_key=${API_KEY}&language=en-US&page=1`,
 	getTvPopular: `${base_URL}/tv/popular?api_key=${API_KEY}&language=en-US&page=1`,
 	getTopRated: `${base_URL}/tv/top_rated?api_key=${API_KEY}&language=en-US&page=1`,
-	getAiring: `${base_URL}/tv/on_the_air?api_key=${API_KEY}&language=en-US&page=1`,
+	// getAiring: `${base_URL}/tv/on_the_air?api_key=${API_KEY}&language=en-US&page=1`,
 	getActAd:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=10759`,
 	getAnim:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=16`,
 	getComedy:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=35`,
@@ -56,6 +57,17 @@ const tvRequests = {
 	getDrama:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=18`,
 	getSciFan:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=10765`
 };
+
+const tvNetflixReqs ={
+	getNeflixOriginals: `${base_URL}/discover/tv?api_key=${API_KEY}&with_networks=213`,
+	getActAd:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=10759&with_networks=213`,
+	getAnim:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=16&with_networks=213`,
+	getComedy:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=35&with_networks=213`,
+	getCrime:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=80&with_networks=213`,
+	getDrama:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=18&with_networks=213`,
+	getSciFan:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=10765&with_networks=213`
+
+}
 
 export const SetItems = React.createContext();
 
@@ -129,6 +141,9 @@ const App = () => {
 						</Route>
 						<Route path="/myFavorite">
 							<MyFav global={{ likes, setLikes }}></MyFav>
+						</Route>
+						<Route path="/netflixTV">
+							<Netflix global={{ tvNetflixReqs, imgBase_URL, likes, watchList  }}></Netflix>
 						</Route>
 						<Route path="/series">
 							<Series

@@ -47,7 +47,8 @@
     cursor: pointer;
 }
 .movie-poster-box:hover .movie-poster__filter{
-    background-color: rgba(69, 162, 158,0.6);
+    background-color: rgba(69, 162, 158,0.5);
+   
 
 }
 
@@ -75,6 +76,7 @@
 .icon-box--tv{
     gap:0 3rem;
     grid-template-columns: repeat(2,min-content);
+    place-items: center;
 
 }
 .icon-box--tv svg{
