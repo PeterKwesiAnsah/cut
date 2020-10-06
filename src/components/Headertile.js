@@ -1,10 +1,11 @@
-import React, { useState, useEffect,useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import '../header.css';
 import axios from 'axios';
 import Rightbar from './Rightbar';
 import Leftbar from './Leftbar';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { SetItems } from '../App';
+import Playtrailer from './Playtrailer';
 // import Fav from './Fav';
 //  import Play from './Play';
 //  import WatchList from './WatchList';
@@ -13,9 +14,10 @@ const Headertile = ({ request, imgBase_URL }) => {
 	/*
 nice header Ids=89641
 */
-const {searchType } = useContext(
-	SetItems
-);
+    //State to show movie Trailer or not
+	const [showTrailer, setShowTrailer] = useState(false);
+
+	const { searchType } = useContext(SetItems);
 	//state for the header
 	const [header, setHeader] = useState({});
 
@@ -25,7 +27,7 @@ const {searchType } = useContext(
 		backgroundColor: 'transparent',
 	};
 	const [style, setStyle] = useState(initStyle);
-	const { id,name, overview, backdrop_path ,title} = header;
+	const { id, name, overview, backdrop_path, title } = header;
 
 	//function truncate string and returns .......
 	const truncate = (str, n) => {
@@ -33,6 +35,11 @@ const {searchType } = useContext(
 			return str.length > n ? str.substr(0, n - 1) + '.....' : str;
 		}
 	};
+
+	//allows users to play trailers
+	const handleTrailer=()=>{
+		setShowTrailer(true)
+	}
 
 	//Function generates random numbers based on array lenth
 	const random = (arr) => {
@@ -71,44 +78,48 @@ const {searchType } = useContext(
 	return (
 		<>
 			{backdrop_path && (
-					<>
-						<header
-							style={{ backgroundImage: `url(${imgBase_URL + backdrop_path})` }}
-							className="header"
-						>
-							<div style={style} className="header-row">
-								<Rightbar></Rightbar>
-								<Leftbar></Leftbar>
-							</div>
-							<div className="header-wrapper">
-								<div className="header-desc">
-									<h2 className="header__title">{name || title}</h2>
-					
-									<div className="header-overview">
-										<p className="header-overview__text">
-											{truncate(overview, 150)}
-										</p>
-									</div>
-									<div className='header-btns__box'>
-									<button className='btn btn--white'>Play Trailer</button>
-									<Link  to={`/${searchType}/${id}`}>
-									<button className='btn btn--grey'>More Info</button>
-									</Link>
-									<Link  to='/myList'>
-									<button className='btn btn--black'>My List</button>
-									</Link>
-				
-								
+				<>
+					<header
+						style={{ backgroundImage: `url(${imgBase_URL + backdrop_path})` }}
+						className="header"
+					>
+						<div style={style} className="header-row">
+							<Rightbar></Rightbar>
+							<Leftbar></Leftbar>
+						</div>
+						{showTrailer && (
+							<Playtrailer
+								showTrailer={setShowTrailer}
+								name={name || title || ''}
+							></Playtrailer>
+						)}
+						<div className="header-wrapper">
+							<div className="header-desc">
+								<h2 className="header__title">{name || title}</h2>
 
-									</div>
+								<div className="header-overview">
+									<p className="header-overview__text">
+										{truncate(overview, 150)}
+									</p>
+								</div>
+								<div className="header-btns__box">
+									{searchType === 'movie' && (
+										<button className="btn btn--white" onClick={handleTrailer}>Play Trailer</button>
+									)}
+									<Link to={`/${searchType}/${id}`}>
+										<button className="btn btn--grey">More Info</button>
+									</Link>
+									<Link to="/myList">
+										<button className="btn btn--black">My List</button>
+									</Link>
 								</div>
 							</div>
-							<div className="header-filter"></div>
-						</header>
-					</>
-				)}
+						</div>
+						<div className="header-filter"></div>
+					</header>
+				</>
+			)}
 		</>
 	);
 };
 export default React.memo(Headertile);
-

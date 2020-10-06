@@ -1,6 +1,6 @@
 .navbar-list{
     display: grid;
-    grid-template-columns: repeat(4,min-content) repeat(2,max-content);
+    grid-template-columns: repeat(2,min-content) repeat(3,max-content);
     gap: 0 3rem;
     font-size:1.4rem;
 }

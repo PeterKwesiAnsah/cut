@@ -12,7 +12,6 @@ const MyFav = ({global}) => {
 		<>
 			<div className="header-row header-row__list">
 				<Rightbar></Rightbar>
-                <Leftbar></Leftbar>
 			</div>
             {likes.length === 0 ? (
 				<Nodata>No movie was found in my favorite.</Nodata>

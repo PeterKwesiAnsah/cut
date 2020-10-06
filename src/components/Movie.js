@@ -7,7 +7,7 @@ import { SetItems } from '../App';
 import { useAdded } from '../hooks/useAdded';
 import { Link } from 'react-router-dom';
 
-const Movie = ({ path, id, title, scroll }) => {
+const Movie = ({ path, id, title, scroll,type }) => {
 	//gets me the current url's pathname
 	// const { pathname } = useLocation();
 	const { setLikes, likes, setWatchList, watchList, searchType } = useContext(
@@ -72,11 +72,22 @@ const Movie = ({ path, id, title, scroll }) => {
 			setLiked(true);
 
 			//add the movie to the likes
-			setLikes([...likes, { id, title, path }]);
+			setLikes([...likes, { id, title, path,type:searchType }]);
 		}
 
 		//setLikes([...likes,{id,title,path}])
 	};
+
+
+	//shows weather to display play button or not
+	const showPlayButton=()=>{
+		if(type){
+			return type==='movie'
+		}
+		else{
+			return searchType ==='movie'
+		}
+	}
 
 	const handleWatch = () => {
 		//if movie is  added to the watch,remove it
@@ -93,7 +104,7 @@ const Movie = ({ path, id, title, scroll }) => {
 		else {
 			setWatched(true);
 			//add the movie to the watchList
-			setWatchList([...watchList, { id, title, path }]);
+			setWatchList([...watchList, { id, title, path,type:searchType }]);
 		}
 
 		//setLikes([...likes,{id,title,path}])
@@ -110,7 +121,7 @@ const Movie = ({ path, id, title, scroll }) => {
 							alt="movie posters"
 							className={`movie-poster ${scroll && 'movie-poster__scroll'}`}
 						></img>
-						<Link to={`/${searchType}/${id}`}>
+						<Link to={`/${type || searchType}/${id}`}>
 							<div className="movie-poster__filter"></div>
 						</Link>
 						<div className={`icon-box ${searchType === 'tv' && 'icon-box--tv'} `}>
@@ -119,7 +130,7 @@ const Movie = ({ path, id, title, scroll }) => {
 								watched={watched}
 								handleWatch={handleWatch}
 							></WatchList>
-							{searchType === 'movie' && <Play></Play>}
+							{showPlayButton() && <Play></Play>}
 						</div>
 					</div>
 				</>

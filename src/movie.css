@@ -69,6 +69,7 @@
     opacity: 0;
     transition: all .3s .1s;
     cursor: pointer;
+    place-items: center;
 
 }
 .icon-box--tv{
@@ -77,8 +78,8 @@
 
 }
 .icon-box--tv svg{
-    width: 3rem;
-    height: 3rem;
+    width: 2.5rem;
+    height: 2.5rem;
 
 }
 

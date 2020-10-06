@@ -15,11 +15,9 @@ const Rightbar = () => {
 					<NavLink className="link-item" activeClassName='active' to='/series'>Series</NavLink>
 				</li>
 				<li>
-					<NavLink className="link-item" activeClassName='active' to='/films'>Films</NavLink>
+					<NavLink className="link-item" activeClassName='active' to='/films'>Netflix Shows</NavLink>
 				</li>
-				<li>
-					<NavLink className="link-item" activeClassName='active' to='/latest'>Latest</NavLink>
-				</li>
+
 				<li>
 					<NavLink to="/myList" className="link-item" activeClassName='active'>
 						My List

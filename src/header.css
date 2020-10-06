@@ -19,7 +19,7 @@
 	right: 26.09%;
 	bottom: 0;
 	opacity: 1;
-	height: 99vh;
+	height: 100vh;
 	width: 75%;
 	display: grid;
 	align-items: center;
@@ -55,7 +55,7 @@
 }
 .header__title {
 	font-size: 4rem;
-	margin-bottom: 4rem;
+	margin-bottom: 2.5rem;
 }
 
 .header-desc {
@@ -172,10 +172,11 @@ image wrapper
 	height: 5vh;
 	width: 100%;
 	background-image: linear-gradient(
-		180deg,
+		/* 180deg,
 		transparent,
 		rgba(37, 37, 37, 0.61),
-		var(--primary)
+		var(--primary) */
+		rgba(37, 37, 37, 0), var(--primary)
 	);
 }
 
@@ -232,8 +233,7 @@ transform: scale(0.9);
 .header-btns__box > * {
 	transition: all 0.3s;
 	backface-visibility: none;
-	-webkit-font-smoothing: antialised;
-	transform: translateZ(0);
+
 }
 .header-btns__box > *:hover {
 	transform: translateY(-0.5rem);

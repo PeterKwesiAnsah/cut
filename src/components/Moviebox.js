@@ -56,13 +56,14 @@ const Moviebox = ({
 								scroll={scroll}
 							></Movie>
 					  ))
-					: movies.map(({ path, id, title }) => (
+					: movies.map(({ path, id, title,type }) => (
 							<Movie
 								path={path}
 								key={id}
 								id={id}
 								title={title}
 								scroll={scroll}
+								type={type}
 							></Movie>
 					  ))}
 			</div>

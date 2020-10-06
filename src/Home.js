@@ -12,11 +12,18 @@ const Home = ({ global }) => {
 			></Headertile>
 			{/* <h1 className="logo-title">Find the right movie for you ..... </h1> */}
 			{/* <Moviebox
-				title={'Upcoming Movies'}
-				request={requests.getUpcoming}
+				title={'Action'}
+				request={requests.getAction}
                 imgBase_URL={imgBase_URL}
-                scroll
+                
+			></Moviebox>
+			<Moviebox
+				title={'Thriller'}
+				request={requests.getThriller}
+                imgBase_URL={imgBase_URL}
+                
 			></Moviebox> */}
+		
 			{/* {likes && (
             <Moviebox
                 title={'My Favorite'}
@@ -33,6 +40,12 @@ const Home = ({ global }) => {
                 // watchLists
             ></Moviebox>
         )} */}
+		        {/* <Moviebox
+					title={'Upcoming'}
+					request={requests.getUpcoming}
+					imgBase_URL={imgBase_URL}
+					isLarge
+				></Moviebox> */}
 			{/* <Moviebox
 					title={'Popular Movies'}
 					request={requests.getPopular}

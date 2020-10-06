@@ -10,14 +10,16 @@ import convertHexToRGBA from '../hexRGB';
 import Playtrailer from './Playtrailer';
 // import { SetItems } from '../App';
 import { useAdded } from '../hooks/useAdded';
-import { useParams } from 'react-router-dom';
+import { useParams,useLocation } from 'react-router-dom';
 import Rightbar from './Rightbar';
 import Leftbar from './Leftbar';
 
 import '../header.css';
 
-const Movietile = ({ request, global, type }) => {
+const Movietile = ({ request, global }) => {
 	//gets me the current url's pathname
+	const {pathname}=useLocation()
+	const type=pathname.split('/')[1]
 	// const {pathname}=useLocation()
 	//movie tile needs work
 	const id = parseInt(useParams().id);
@@ -81,6 +83,7 @@ const Movietile = ({ request, global, type }) => {
 					id,
 					title: original_title,
 					path: `https://image.tmdb.org/t/p/original${poster_path}`,
+					type
 				},
 			]);
 		}
@@ -107,6 +110,7 @@ const Movietile = ({ request, global, type }) => {
 					id,
 					title: original_title,
 					path: `https://image.tmdb.org/t/p/original${poster_path}`,
+					type
 				},
 			]);
 		}
@@ -160,8 +164,8 @@ const Movietile = ({ request, global, type }) => {
 				return (
 					<div
 						style={{
-							backgroundImage: `linear-gradient(to right,${rgba.darkMuted},${
-								rgba.lightVibrant
+							backgroundImage: `linear-gradient(to right,${rgba.darkVibrant},${
+								rgba.darkVibrant
 							}),url(${
 								backdrop_path
 									? `https://image.tmdb.org/t/p/original${backdrop_path}`

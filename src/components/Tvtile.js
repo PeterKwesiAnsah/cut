@@ -9,13 +9,17 @@ import convertHexToRGBA from '../hexRGB';
 // import Playtrailer from './Playtrailer';
 // import { SetItems } from '../App';
 import { useAdded } from '../hooks/useAdded';
-import { useParams } from 'react-router-dom';
+import { useParams,useLocation } from 'react-router-dom';
 import Rightbar from './Rightbar';
 import Leftbar from './Leftbar';
 
 import '../header.css';
+/* http://localhost:3000/tv/48866*/
+const Tvtile = ({ request, global }) => {
 
-const Tvtile = ({ request, global, type }) => {
+	const {pathname}=useLocation()
+	const type=pathname.split('/')[1]
+
 	//movie tile needs work
 	const id = parseInt(useParams().id);
 
@@ -80,6 +84,7 @@ const Tvtile = ({ request, global, type }) => {
 					id,
 					title: name,
 					path: `https://image.tmdb.org/t/p/original${poster_path}`,
+					type
 				},
 			]);
 		}
@@ -106,6 +111,7 @@ const Tvtile = ({ request, global, type }) => {
 					id,
 					title: name,
 					path: `https://image.tmdb.org/t/p/original${poster_path}`,
+					type
 				},
 			]);
 		}

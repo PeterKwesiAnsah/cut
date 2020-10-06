@@ -13,7 +13,6 @@ const MyList = ({ global }) => {
 		<div>
 			<div className=" header-row header-row__list">
 				<Rightbar></Rightbar>
-				<Leftbar></Leftbar>
 			</div>
 			{watchList.length === 0 ? (
 				<Nodata>No movie was found in my list.</Nodata>

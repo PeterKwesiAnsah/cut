@@ -33,8 +33,14 @@ const requests = {
 	getPopular: `${base_URL_Bulk}/now_playing?api_key=${API_KEY}`,
 	getNowPlaying: `${base_URL_Bulk}/popular?api_key=${API_KEY}`,
 	getTrending: ` ${base_URL}/trending/all/day?api_key=${API_KEY}`,
-	getTvPopular: `${base_URL}/tv/popular?api_key=${API_KEY}&language=en-US&page=1`,
-	getNeflixOriginals: `${base_URL}/discover/tv?api_key=${API_KEY}&with_networks=213`,
+	getAction:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=28`,
+	getThriller:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=53`,
+	getComedy:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=35`,
+	getHorror:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=27`,
+	getRomance:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=10749`,
+	getSciFi:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=878`
+	// getTvPopular: `${base_URL}/tv/popular?api_key=${API_KEY}&language=en-US&page=1`,
+	// getNeflixOriginals: `${base_URL}/discover/tv?api_key=${API_KEY}&with_networks=213`,
 };
 
 const tvRequests = {
@@ -43,6 +49,12 @@ const tvRequests = {
 	getTvPopular: `${base_URL}/tv/popular?api_key=${API_KEY}&language=en-US&page=1`,
 	getTopRated: `${base_URL}/tv/top_rated?api_key=${API_KEY}&language=en-US&page=1`,
 	getAiring: `${base_URL}/tv/on_the_air?api_key=${API_KEY}&language=en-US&page=1`,
+	getActAd:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=10759`,
+	getAnim:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=16`,
+	getComedy:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=35`,
+	getCrime:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=80`,
+	getDrama:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=18`,
+	getSciFan:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=10765`
 };
 
 export const SetItems = React.createContext();
@@ -101,14 +113,14 @@ const App = () => {
 							<Movietile
 								request={getItem}
 								global={{ setLikes, likes, setWatchList, watchList }}
-								type={searchType}
+				
 							></Movietile>
 						</Route>
 						<Route path="/tv/:id">
 							<Tvtile
 								request={getItem}
 								global={{ setLikes, likes, setWatchList, watchList }}
-								type={searchType}
+			
 							></Tvtile>
 						</Route>
 

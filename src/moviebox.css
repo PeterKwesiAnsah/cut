@@ -5,8 +5,11 @@
 	margin-top: -15rem;
 }
 .movie-box__title {
+	font-size: 2.5rem;
 	color: var(--text);
-	margin-bottom: 4rem;
+	margin-bottom: 2.5rem;
+	color: var(--tertiary);
+	font-style: italic;
 }
 
 .movie-row--likes {
