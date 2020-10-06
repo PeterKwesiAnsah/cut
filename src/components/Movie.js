@@ -124,7 +124,7 @@ const Movie = ({ path, id, title, scroll,type }) => {
 						<Link to={`/${type || searchType}/${id}`}>
 							<div className="movie-poster__filter"></div>
 						</Link>
-						<div className={`icon-box ${searchType === 'tv' && 'icon-box--tv'} `}>
+						<div className={`icon-box ${(searchType === 'tv' || type==='tv') && 'icon-box--tv'} `}>
 							<Fav liked={liked} handleLike={handleLike}></Fav>
 							<WatchList
 								watched={watched}
