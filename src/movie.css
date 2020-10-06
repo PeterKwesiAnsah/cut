@@ -44,7 +44,7 @@
     z-index: 0;
     border-radius: 1rem;
     transition: all .3s ease-in;
-    cursor: pointer;
+    cursor: pointer; 
 }
 .movie-poster-box:hover .movie-poster__filter{
     background-color: rgba(69, 162, 158,0.5);
