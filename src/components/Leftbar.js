@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, useEffect } from 'react';
+import React, {  useContext, useRef, useEffect } from 'react';
 import { ReactComponent as Magni } from '../magni.svg';
 import { useHistory, useLocation } from 'react-router-dom';
 import { SetItems } from '../App';
