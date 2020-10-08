@@ -15,7 +15,8 @@
 .movie-box__title {
 	font-size: 2.5rem;
 	color: var(--text);
-	margin-bottom: 2.5rem;
+	margin-bottom: 0.5rem;
+	transform: translateX(2.5rem);
 	color: var(--tertiary);
 }
 
