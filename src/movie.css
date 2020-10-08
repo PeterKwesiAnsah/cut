@@ -115,9 +115,12 @@ animation: 1.5s ease 0s infinite beat;
       .movie-poster{
           width: 15rem;
       }
-      .movie-poster__filter{
+      .movie-poster__filter,
+      .icon-box,
+      .icon-box--tv{
           display:none;
       }
+      
   }
 /* 
   linear-gradient(to bottom,rgba(0,0,0,.7) 10%,rgba(0,0,0,0)) */
