@@ -1,9 +1,18 @@
-import React from 'react';
+import React ,{useState}from 'react';
 import { NavLink } from 'react-router-dom';
 import '../navbar.css';
+import {ReactComponent as NaviIcon} from '../navigation.svg'
 
 const Rightbar = () => {
+	const [show,setShow]=useState(false)
+
+	//use to toggle between states
+	const toggle=()=>{
+		setShow(state=>!state)
+	}
 	return (
+		<div className={` navbox ${show && 'navbox--show'}`}>
+		<NaviIcon className='navicon' onClick={toggle}></NaviIcon>
 		<nav>
 			<ul className="navbar-list">
 				<li>
@@ -30,6 +39,8 @@ const Rightbar = () => {
 				</li>
 			</ul>
 		</nav>
+		</div>
+	
 	);
 };
 

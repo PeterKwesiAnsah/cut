@@ -6,6 +6,7 @@ import WatchList from './WatchList';
 import { SetItems } from '../App';
 import { useAdded } from '../hooks/useAdded';
 import { Link } from 'react-router-dom';
+import Playtrailer from './Playtrailer'
 
 const Movie = ({ path, id, title, scroll,type }) => {
 	//gets me the current url's pathname
@@ -13,6 +14,14 @@ const Movie = ({ path, id, title, scroll,type }) => {
 	const { setLikes, likes, setWatchList, watchList, searchType } = useContext(
 		SetItems
 	);
+
+	//State to show movie Trailer or not
+	   const [showTrailer, setShowTrailer] = useState(false);
+
+	//allows users to play trailers
+	const handleTrailer=()=>{
+		setShowTrailer(true)
+	}
 
 	const [isLiked] = useAdded(likes, id);
 	const [isWatched] = useAdded(watchList, id);
@@ -115,7 +124,14 @@ const Movie = ({ path, id, title, scroll,type }) => {
 		<>
 			{!path.includes('undefined') && !path.includes('null') && (
 				<>
+				{showTrailer && (
+							<Playtrailer
+								showTrailer={setShowTrailer}
+								name={ title || ''}
+							></Playtrailer>
+						)}
 					<div className="movie-poster-box">
+					
 						<img
 							src={path}
 							alt="movie posters"
@@ -130,7 +146,7 @@ const Movie = ({ path, id, title, scroll,type }) => {
 								watched={watched}
 								handleWatch={handleWatch}
 							></WatchList>
-							{showPlayButton() && <Play></Play>}
+							{showPlayButton() && <Play  handlePlay={handleTrailer}></Play>}
 						</div>
 					</div>
 				</>

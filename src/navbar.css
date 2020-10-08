@@ -1,3 +1,6 @@
+
+
+
 .navbar-list{
     display: grid;
     grid-template-columns: repeat(2,min-content) repeat(3,max-content);
@@ -23,4 +26,78 @@
 
 .active{
     color: var(--text);
+}
+
+.navbox{
+    transition: all .5s;
+}
+.navbox--show{
+    position: fixed;
+    top:0;
+    left: 0;
+    height: 100vh;
+    width: 75vw;
+    background-color: black;
+    z-index: 40;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    transition: all .3s;
+    animation: slidein .3s ease-in;
+    transform-origin: top;
+}
+.navbox--show nav{
+    align-self: center;
+    justify-self: center;
+   
+    margin: auto;
+
+}
+
+.navbox--show .navbar-list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2.5rem;
+  margin-top: -100px;
+
+}
+.navbox--show .navbar-list li{
+margin-top: 2rem;
+}
+.navbox--show .navicon{
+    animation: left-right .5s ease-in;
+}
+
+@media only screen and (max-width:62.5em){
+    .navbar-list{
+        display: none;
+    }
+}
+
+@media only screen and (min-width:62.5em){
+    .navicon{
+        display: none;
+    }
+}
+ @keyframes slidein{
+from{
+   opacity: 0;
+}
+to{
+    opacity: 1;
+}
+ }
+
+ @keyframes left-right {
+	0% {
+		opacity: 0;
+		transform: translateX(-100%);
+	}
+
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import axios from 'axios';
 import '../moviebox.css';
 import Movie from './Movie';
-
+// import { SetItems } from '../App';
+import {useLocation} from 'react-router-dom'
 const Moviebox = ({
 	title,
 	request,
@@ -12,8 +13,17 @@ const Moviebox = ({
 	scroll,
 	search,
 }) => {
+
+
 	const [movies, setMovies] = useState([]);
 	// const [empty,setEmpty]=useState(t)
+	// //Get the search type from context API
+	// const { searchType } = useContext(SetItems);
+
+	//Get pathname from useLocation
+    const {pathname}=useLocation()
+
+
 	useEffect(() => {
 		const fetchdata = async () => {
 			const results = await axios.get(request);
@@ -36,7 +46,7 @@ const Moviebox = ({
 	}, [movieP, request, isLarge]);
 
 	return (
-		<div className={`movie-box ${scroll && 'movie-box__scroll'}`}>
+		<div className={`movie-box ${scroll && 'movie-box__scroll'} ${pathname ==='/' && 'movie-box--home'}`}>
 			<h1 className="movie-box__title">{title}</h1>
 
 			<div
@@ -47,12 +57,12 @@ const Moviebox = ({
 				}
 			>
 				{request
-					? movies.map(({ poster_path, id, original_title }) => (
+					? movies.map(({ poster_path, id, original_title ,name}) => (
 							<Movie
 								path={imgBase_URL + poster_path}
 								key={id}
 								id={id}
-								title={original_title}
+								title={original_title || name}
 								scroll={scroll}
 							></Movie>
 					  ))

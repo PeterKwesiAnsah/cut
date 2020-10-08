@@ -1,10 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState} from 'react';
 import YouTube from 'react-youtube';
 import 'movie-trailer';
 import movieTrailer from 'movie-trailer';
 import '../playtrailer.css';
 
+import {useLocation} from 'react-router-dom';
+
 const Playtrailer = ({ name,showTrailer }) => {
+
+  	//Get pathname from useLocation
+    const {pathname}=useLocation()
+
 
     //state for traier IDs
     const [vidID, setvidID] = useState('');
@@ -28,8 +34,8 @@ const Playtrailer = ({ name,showTrailer }) => {
 
 	return (
 		//div element going to be a backdrop for the youtube trailer for the movietile component
-
-		<div className='trailer-backdrop' onClick={()=>{showTrailer(false)}}>
+//Trailer should disapper when is out of the view port
+		<div className={`trailer-backdrop ${pathname ==='/' && 'trailer-backdrop--home'}`} onClick={()=>{showTrailer(false)}}>
             <YouTube videoId={vidID} opts={opts}></YouTube>
         </div>
 	);

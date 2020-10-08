@@ -6,6 +6,7 @@ import Leftbar from './Leftbar';
 import { Link } from 'react-router-dom';
 import { SetItems } from '../App';
 import Playtrailer from './Playtrailer';
+import NavRow from './NavRow'
 // import Fav from './Fav';
 //  import Play from './Play';
 //  import WatchList from './WatchList';
@@ -79,14 +80,18 @@ nice header Ids=89641
 		<>
 			{backdrop_path && (
 				<>
+				<header className='mobile-header'>
+				<NavRow styles={style}></NavRow>
+				</header>
 					<header
 						style={{ backgroundImage: `url(${imgBase_URL + backdrop_path})` }}
 						className="header"
 					>
-						<div style={style} className="header-row">
+						{/* <div style={style} className="header-row">
 							<Rightbar></Rightbar>
 							<Leftbar></Leftbar>
-						</div>
+						</div> */}
+						<NavRow styles={style}></NavRow>
 						{showTrailer && (
 							<Playtrailer
 								showTrailer={setShowTrailer}

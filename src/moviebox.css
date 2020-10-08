@@ -1,6 +1,14 @@
 .movie-box {
 	padding: 3rem;
+	
 }
+.movie-box--home{
+	position: relative;
+
+}
+/* .movie-box--trailer::-webkit-scrollbar{
+	display: none;
+} */
 .movie-box__scroll {
 	margin-top: -15rem;
 }
@@ -9,7 +17,6 @@
 	color: var(--text);
 	margin-bottom: 2.5rem;
 	color: var(--tertiary);
-	font-style: italic;
 }
 
 .movie-row--likes {
@@ -37,4 +44,17 @@
 
 .movie-row__scroll::-webkit-scrollbar {
 	display: none;
+}
+
+@media only screen and (max-width:62.5em){
+    .movie-row{
+		grid-template-columns: none;
+		grid-auto-flow: column;
+		overflow-y: hidden;
+		overflow-x: scroll;
+	}
+	
+	.movie-row::-webkit-scrollbar{
+display: none;
+	}
 }

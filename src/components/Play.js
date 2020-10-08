@@ -4,7 +4,7 @@ const Play = ({handlePlay,medium}) => {
 	return (
 		<>
 			<svg
-			// onClick={handlePlay}
+			onClick={handlePlay}
 			className='svg-play'
 				width={medium ? "3.6rem" :"24px"}
 				height={medium ? "3.6rem" :"24px"}

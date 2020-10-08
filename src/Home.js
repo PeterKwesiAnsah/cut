@@ -10,6 +10,17 @@ const Home = ({ global }) => {
 				request={requests.getPopular}
 				imgBase_URL={imgBase_URL}
 			></Headertile>
+			<Moviebox
+				title={'Thriller'}
+				request={requests.getThriller}
+                imgBase_URL={imgBase_URL}
+                
+			></Moviebox>
+			<Moviebox
+				title={'Action'}
+				request={requests.getAction}
+                imgBase_URL={imgBase_URL}     
+			></Moviebox>
 			{/* <h1 className="logo-title">Find the right movie for you ..... </h1> */}
 			{/* <Moviebox
 				title={'Action'}

@@ -5,6 +5,9 @@
 	background-position: center center;
 	background-size: cover;
 	height: 100%;
+
+
+
 }
 
 .header-wrapper {
@@ -109,6 +112,28 @@
 	font-size: 3rem;
 	font-weight: 300;
 }
+
+@media only screen and (max-width:62.5em){
+	.header{
+		display: none;
+	}
+
+	.search-box svg{
+		display: none;
+	}
+	.search-box input{
+		transform: scaleX(1);
+		width: 20rem;
+	}
+
+	}
+
+	@media only screen and (min-width:62.5em){
+		.mobile-header{
+			display: none;
+		}
+	}
+
 
 /* .header-filter {
 	height: 5vh;
