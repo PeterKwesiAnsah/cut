@@ -118,7 +118,7 @@ animation: 1.5s ease 0s infinite beat;
       .movie-poster__filter,
       .icon-box,
       .icon-box--tv{
-          display:none;
+          visibility: hidden;
       }
       
   }

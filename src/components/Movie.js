@@ -131,12 +131,14 @@ const Movie = ({ path, id, title, scroll,type }) => {
 							></Playtrailer>
 						)}
 					<div className="movie-poster-box">
-					
+						<Link to={`/${type || searchType}/${id}`}>
 						<img
 							src={path}
 							alt="movie posters"
 							className={`movie-poster ${scroll && 'movie-poster__scroll'}`}
 						></img>
+						</Link>
+					
 						<Link to={`/${type || searchType}/${id}`}>
 							<div className="movie-poster__filter"></div>
 						</Link>

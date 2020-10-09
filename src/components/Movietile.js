@@ -189,7 +189,7 @@ const Movietile = ({ request, global }) => {
 								<Rightbar></Rightbar>
 								<Leftbar></Leftbar>
 							</div>
-							<div style={{ display: 'flex' }}>
+							<div className='movie-parentbox'>
 								<div
 									className="movie-card"
 									style={{
