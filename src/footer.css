@@ -1,0 +1,56 @@
+.footer{
+ display: grid;
+ grid-template-columns: repeat(2,1fr);
+ justify-items: flex-end;
+ padding: 3rem;
+ cursor: pointer;
+ gap: 3rem;
+}
+
+.footer svg{
+    fill:var(--text);
+    transition: all .3s;
+    
+}
+.footer a:nth-child(2){
+justify-self: flex-start;
+}
+
+.footer-logo__box{
+    grid-column: 1/-1;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-logo__box > svg{
+   
+    width: 40px;
+    height:40px
+}
+.footer-logo__box >span{
+    display: flex;
+    align-items: center;
+    color: var(--tertiary);
+    font-size: 1.5rem;
+}
+
+
+.footer a:hover svg{
+    fill: #20293a;
+    transform: scale(1.1) translateY(-4px);
+}
+
+
+
+
+/*
+
+ADD TITTLE TO SVG
+IT SHOWS IT WHEN IT'S BEING HOVERED
+
+DONT FORGET YOU CAN ALSO STYLE IT NICELY
+
+
+*/

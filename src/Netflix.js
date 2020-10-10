@@ -1,6 +1,7 @@
 import React from 'react';
 import Headertile from './components/Headertile';
 import Moviebox from './components/Moviebox';
+import Footer from './components/Footer'
 
 const Netflix = ({ global }) => {
 	const { tvNetflixReqs, imgBase_URL, likes, watchList } = global;
@@ -84,7 +85,7 @@ const Netflix = ({ global }) => {
 				request={tvNetflixReqs.getSciFan}
 				imgBase_URL={imgBase_URL}
 			></Moviebox>
-
+            <Footer></Footer>
 
 
 		

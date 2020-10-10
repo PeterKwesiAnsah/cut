@@ -1,6 +1,7 @@
 import React from 'react';
 import Headertile from './components/Headertile';
 import Moviebox from './components/Moviebox';
+import Footer from './components/Footer'
 
 const Home = ({ global }) => {
 	const { requests, imgBase_URL, likes, watchList } = global;
@@ -100,8 +101,10 @@ const Home = ({ global }) => {
 					imgBase_URL={imgBase_URL}
 				
 				></Moviebox>
+				<Footer></Footer>
 			
 		
+
 
 		
 		        {/* <Moviebox

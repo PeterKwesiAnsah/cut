@@ -1,6 +1,7 @@
 import React from 'react';
 import Headertile from './components/Headertile';
 import Moviebox from './components/Moviebox';
+import Footer from './components/Footer'
 
 const Series = ({ global }) => {
 	const { tvRequests, imgBase_URL, likes, watchList } = global;
@@ -93,6 +94,8 @@ const Series = ({ global }) => {
 				request={tvRequests.getSciFan}
 				imgBase_URL={imgBase_URL}
 			></Moviebox>
+
+			<Footer></Footer>
 			
 		</>
 	);
