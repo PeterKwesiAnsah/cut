@@ -64,8 +64,8 @@ const Leftbar = () => {
 			<Magni onClick={handleClick}></Magni>
 			<input
 				type="text"
-				placeholder={`Search for your ${
-					searchType === 'tv' ? 'Tv show' : 'Movies'
+				placeholder={`Search for  ${
+					searchType === 'tv' ? 'Tv Shows' : 'Movies'
 				}.....`}
 				className={hide ? 'hide' : 'show'}
 				onChange={handleChange}

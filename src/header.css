@@ -122,20 +122,35 @@
 		display: none;
 	}
 	.search-box input{
-		transform: scaleX(1);
+		transform: scale(1);
 		width: 20rem;
 		padding-left: 1rem;
+		transition: all .3s;
+		backface-visibility: hidden;
+
 	}
 	.search-box input::placeholder{
-		font-size: 1.5rem;
+		font-size: 1.2rem;
+		line-height: 1.2rem;
 	}
-
+	.search-box input:focus{
+		width: 100%;
+	}
 	}
 
 	@media only screen and (min-width:62.5em){
 		.mobile-header{
 			display: none;
 		}
+		
+	}
+
+	@media only screen and (max-width:62.5em){
+
+		.header-row{
+			height: 7vh;
+		}
+		
 	}
 
 
