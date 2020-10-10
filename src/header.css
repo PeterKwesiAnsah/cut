@@ -126,7 +126,8 @@
 		width: 20rem;
 		padding-left: 1rem;
 		transition: all .3s;
-		backface-visibility: hidden;
+		
+		
 
 	}
 	.search-box input::placeholder{

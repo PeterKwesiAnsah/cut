@@ -10,32 +10,62 @@ const Home = ({ global }) => {
 				request={requests.getPopular}
 				imgBase_URL={imgBase_URL}
 			></Headertile>
-			<Moviebox
-				title={'Thriller'}
-				request={requests.getThriller}
-                imgBase_URL={imgBase_URL}
-                
-			></Moviebox>
-			<Moviebox
+				<Moviebox
 				title={'Action'}
 				request={requests.getAction}
-                imgBase_URL={imgBase_URL}     
+				imgBase_URL={imgBase_URL}   
 			></Moviebox>
-			{/* <h1 className="logo-title">Find the right movie for you ..... </h1> */}
-			{/* <Moviebox
-				title={'Action'}
-				request={requests.getAction}
+				<Moviebox
+				title={'Adventure'}
+				request={requests.getAdven}
+				imgBase_URL={imgBase_URL}   
+			></Moviebox>
+
+			
+			<Moviebox
+				title={'Animations'}
+				request={requests.getAnimat}
+                imgBase_URL={imgBase_URL}
+                
+			></Moviebox>
+				<Moviebox
+				title={'Comedy'}
+				request={requests.getComedy}
                 imgBase_URL={imgBase_URL}
                 
 			></Moviebox>
 			<Moviebox
-				title={'Thriller'}
-				request={requests.getThriller}
+				title={'Crime'}
+				request={requests.getCrime}
                 imgBase_URL={imgBase_URL}
                 
-			></Moviebox> */}
-		
-			{/* {likes && (
+			></Moviebox>
+				<Moviebox
+				title={'Documentries'}
+				request={requests.getDocu}
+                imgBase_URL={imgBase_URL}
+                
+			></Moviebox>
+				<Moviebox
+				title={'Drama'}
+				request={requests.getDrama}
+                imgBase_URL={imgBase_URL}
+                
+			></Moviebox>
+				<Moviebox
+				title={'Family'}
+				request={requests.getFamily}
+                imgBase_URL={imgBase_URL}
+                
+			></Moviebox>
+					<Moviebox
+				title={'Fantasy'}
+				request={requests.getFantasy}
+                imgBase_URL={imgBase_URL}
+                
+			></Moviebox>
+			
+			{likes.length > 0 && (
             <Moviebox
                 title={'My Favorite'}
                 movieP={likes}
@@ -44,37 +74,44 @@ const Home = ({ global }) => {
         )}
         
 
-        {watchList && (
+        {watchList.length > 0 && (
             <Moviebox
                 title={'My List'}
                 movieP={watchList}
                 // watchLists
             ></Moviebox>
-        )} */}
+        )}
+
+			<Moviebox
+				title={'Thriller'}
+				request={requests.getThriller}
+                imgBase_URL={imgBase_URL}
+                
+			></Moviebox>		
+			
+			         <Moviebox
+						title={'Trending Now'}
+						request={requests.getTrending}
+						imgBase_URL={imgBase_URL}
+						isLarge
+					></Moviebox>
+			<Moviebox
+					title={'Upcoming'}
+					request={requests.getUpcoming}
+					imgBase_URL={imgBase_URL}
+				
+				></Moviebox>
+			
+		
+
+		
 		        {/* <Moviebox
 					title={'Upcoming'}
 					request={requests.getUpcoming}
 					imgBase_URL={imgBase_URL}
 					isLarge
 				></Moviebox> */}
-			{/* <Moviebox
-					title={'Popular Movies'}
-					request={requests.getPopular}
-					imgBase_URL={imgBase_URL}
-				></Moviebox>
-				{
-					<Moviebox
-						title={'Trending Now'}
-						request={requests.getTrending}
-						imgBase_URL={imgBase_URL}
-						isLarge
-					></Moviebox>
-				}
-				<Moviebox
-					title={'In Cinema Now'}
-					request={requests.getNowPlaying}
-					imgBase_URL={imgBase_URL}
-				></Moviebox> */}
+	
 		</>
 	);
 };

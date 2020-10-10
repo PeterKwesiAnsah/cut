@@ -35,8 +35,15 @@ const requests = {
 	getNowPlaying: `${base_URL_Bulk}/popular?api_key=${API_KEY}`,
 	getTrending: ` ${base_URL}/trending/all/day?api_key=${API_KEY}`,
 	getAction:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=28`,
-	getThriller:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=53`,
+	getAdven:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=12`,
+	getAnimat:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=16`,
 	getComedy:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=35`,
+	getCrime:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=80`,
+	getDocu:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=99`,
+	getDrama:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=18`,
+	getFamily:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=10751`,
+	getFantasy:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=14`,
+	getThriller:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=53`,
 	getHorror:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=27`,
 	getRomance:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=10749`,
 	getSciFi:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=878`
@@ -54,7 +61,11 @@ const tvRequests = {
 	getAnim:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=16`,
 	getComedy:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=35`,
 	getCrime:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=80`,
+	getDocu:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=99`,
 	getDrama:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=18`,
+	getFamily:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=10751`,
+	getMystery:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=9648`,
+	getWarPoli:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=10768`,
 	getSciFan:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=10765`
 };
 
@@ -64,7 +75,11 @@ const tvNetflixReqs ={
 	getAnim:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=16&with_networks=213`,
 	getComedy:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=35&with_networks=213`,
 	getCrime:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=80&with_networks=213`,
+	getDocu:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=99&with_networks=213`,
 	getDrama:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=18&with_networks=213`,
+	getFamily:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=10751&with_networks=213`,
+	getMystery:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=9648&with_networks=213`,
+	getWarPoli:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=10768&with_networks=213`,
 	getSciFan:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=10765&with_networks=213`
 
 }

@@ -10,53 +10,84 @@ const Netflix = ({ global }) => {
 				request={tvNetflixReqs.getNeflixOriginals}
 				imgBase_URL={imgBase_URL}
 			></Headertile>
-			<Moviebox
+
+			  <Moviebox
+				title={'Action and Adventure'}
+				request={tvNetflixReqs.getActAd}
+				imgBase_URL={imgBase_URL}
+			></Moviebox>
+
+			     <Moviebox
 				title={'Animations'}
 				request={tvNetflixReqs.getAnim}
 				imgBase_URL={imgBase_URL}
 			></Moviebox>
-
-
-			{/* <Moviebox
-				title={'Latest TV Shows'}
-				request={tvRequests.getLatest}
+			     <Moviebox
+				title={'Comedy'}
+				request={tvNetflixReqs.getComedy}
+				imgBase_URL={imgBase_URL}
+			></Moviebox>
+		<Moviebox
+				title={'Crime'}
+				request={tvNetflixReqs.getCrime}
 				imgBase_URL={imgBase_URL}
 			></Moviebox>
 
-			{likes.length > 0 && (
-				<Moviebox
-					title={'My Favorite'}
-					movieP={likes}
-					// likedMovies
-				></Moviebox>
-			)}
-
-			<Moviebox
-				title={'Airing Today'}
-				request={tvRequests.getAirToday}
+			     <Moviebox
+				title={'Documentaries'}
+				request={tvNetflixReqs.getDocu}
+				imgBase_URL={imgBase_URL}
+			></Moviebox>
+				     <Moviebox
+				title={'Drama'}
+				request={tvNetflixReqs.getDrama}
 				imgBase_URL={imgBase_URL}
 			></Moviebox>
 
-			{watchList.length > 0 && (
-				<Moviebox
-					title={'My List'}
-					movieP={watchList}
-					// watchLists
-				></Moviebox>
-			)}
-
-			<Moviebox
-				title={'Top Rated TV shows'}
-				request={tvRequests.getTopRated}
+				     <Moviebox
+				title={'Family'}
+				request={tvNetflixReqs.getFamily}
 				imgBase_URL={imgBase_URL}
-				isLarge
 			></Moviebox>
 
-			<Moviebox
-				title={'Aired TV shows'}
-				request={tvRequests.getAiring}
+				{likes.length > 0 && (
+            <Moviebox
+                title={'My Favorite'}
+                movieP={likes}
+                // likedMovies
+            ></Moviebox>
+        )}
+        
+
+        {watchList.length > 0 && (
+            <Moviebox
+                title={'My List'}
+                movieP={watchList}
+                // watchLists
+            ></Moviebox>
+        )}
+
+			     <Moviebox
+				title={'Mystery'}
+				request={tvNetflixReqs.getMystery}
 				imgBase_URL={imgBase_URL}
-			></Moviebox> */}
+			></Moviebox>
+
+				     <Moviebox
+				title={'War and Politics'}
+				request={tvNetflixReqs.getWarPoli}
+				imgBase_URL={imgBase_URL}
+			></Moviebox>
+
+					     <Moviebox
+				title={'Sci-Fi and Fantasy'}
+				request={tvNetflixReqs.getSciFan}
+				imgBase_URL={imgBase_URL}
+			></Moviebox>
+
+
+
+		
 		</>
 	);
 };
