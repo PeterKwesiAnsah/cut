@@ -33,7 +33,7 @@ const requests = {
 	getUpcoming: `${base_URL_Bulk}/upcoming?api_key=${API_KEY}`,
 	getPopular: `${base_URL_Bulk}/now_playing?api_key=${API_KEY}`,
 	getNowPlaying: `${base_URL_Bulk}/popular?api_key=${API_KEY}`,
-	getTrending: ` ${base_URL}/trending/all/day?api_key=${API_KEY}`,
+	getTrending: ` ${base_URL}/trending/movie/day?api_key=${API_KEY}`,
 	getAction:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=28`,
 	getAdven:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=12`,
 	getAnimat:`${base_URL}/discover/movie?api_key=${API_KEY}&with_genres=16`,
@@ -66,7 +66,8 @@ const tvRequests = {
 	getFamily:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=10751`,
 	getMystery:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=9648`,
 	getWarPoli:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=10768`,
-	getSciFan:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=10765`
+	getSciFan:`${base_URL}/discover/tv?api_key=${API_KEY}&with_genres=10765`,
+	getTrending: ` ${base_URL}/trending/tv/day?api_key=${API_KEY}`,
 };
 
 const tvNetflixReqs ={

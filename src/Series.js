@@ -75,6 +75,12 @@ const Series = ({ global }) => {
 				request={tvRequests.getMystery}
 				imgBase_URL={imgBase_URL}
 			></Moviebox>
+			
+			<Moviebox
+						title={'Trending Now'}
+						request={tvRequests.getTrending}
+						imgBase_URL={imgBase_URL}
+					></Moviebox>
 
 				     <Moviebox
 				title={'War and Politics'}
