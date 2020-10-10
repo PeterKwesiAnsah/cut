@@ -93,7 +93,6 @@ const Home = ({ global }) => {
 						title={'Trending Now'}
 						request={requests.getTrending}
 						imgBase_URL={imgBase_URL}
-						isLarge
 					></Moviebox>
 			<Moviebox
 					title={'Upcoming'}
