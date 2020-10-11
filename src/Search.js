@@ -20,7 +20,7 @@ const Search = ({ global,request,type }) => {
 				<Leftbar></Leftbar>
 			</div>
 			<Moviebox
-				title={`Search Results:${type.toUpperCase()}'S`}
+				title={`Search Results:${type.toUpperCase()}`}
 				request={request}
                 imgBase_URL={imgBase_URL}
                  search
