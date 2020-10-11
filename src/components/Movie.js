@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import '../movie.css';
 import Play from './Play';
 import Fav from './Fav';
@@ -28,6 +28,11 @@ const Movie = ({ path, id, title, scroll,type }) => {
 	const [liked, setLiked] = useState(isLiked);
 	const [watched, setWatched] = useState(isWatched);
 
+
+				useEffect(()=>{
+				setLiked(isLiked)
+				setWatched(isWatched)
+				},[likes,watchList])
 
 	//used to set
 	const handleLike = () => {
