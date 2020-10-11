@@ -3,18 +3,18 @@ import {ReactComponent as Twitter} from '../twitter.svg'
 import {ReactComponent as Github} from '../github.svg'
 import {ReactComponent as Logo} from '../logo.svg'
 import {ReactComponent as ReactLogo} from '../reactlogo.svg'
-import {Link} from 'react-router-dom'
+import { ExternalLink } from 'react-external-link';
 import '../footer.css'
 
 const Footer = () => {
     return (
         <div className='footer'>
-        <Link to ='/twitter' target="_blank">
+        <ExternalLink href='https://twitter.com/akwesi_ansah' target="_blank">
         <Twitter></Twitter>
-        </Link>
-       <Link to ='/github' target="_blank">
+        </ExternalLink>
+       <ExternalLink href='https://github.com/PeterKwesiAnsah' target="_blank">
        <Github ></Github>  
-       </Link>
+       </ExternalLink>
        <div className='footer-logo__box'>
        <Logo></Logo>
        <span>&copy;2020 made with&nbsp;<ReactLogo></ReactLogo></span>

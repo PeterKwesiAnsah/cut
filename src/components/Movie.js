@@ -28,7 +28,7 @@ const Movie = ({ path, id, title, scroll,type }) => {
 	const [liked, setLiked] = useState(isLiked);
 	const [watched, setWatched] = useState(isWatched);
 
-
+//Allows every movie component with the same id to share the same state
 				useEffect(()=>{
 				setLiked(isLiked)
 				setWatched(isWatched)
