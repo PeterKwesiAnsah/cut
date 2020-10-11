@@ -9,8 +9,7 @@ import { Link } from 'react-router-dom';
 import Playtrailer from './Playtrailer'
 
 const Movie = ({ path, id, title, scroll,type }) => {
-	//gets me the current url's pathname
-	// const { pathname } = useLocation();
+
 	const { setLikes, likes, setWatchList, watchList, searchType } = useContext(
 		SetItems
 	);
@@ -29,41 +28,6 @@ const Movie = ({ path, id, title, scroll,type }) => {
 	const [liked, setLiked] = useState(isLiked);
 	const [watched, setWatched] = useState(isWatched);
 
-	// if (isLiked && !liked) {
-	// 	setLiked(true);
-	// } else if (isWatched && !watched) {
-	// 	setWatched(true);
-	// }
-
-	//function determines if a function is Liked or not
-	// const isLiked = () => {
-	// 	const filterdMovies = likes.filter((movie) => movie.id === id);
-	// 	return filterdMovies.length;
-	// };
-
-	// const isWatched = () => {
-	// 	const filterdList = watchList.filter((movie) => movie.id === id);
-	// 	return filterdList.length;
-	// };
-
-	//if state is true and you cant find the movie in the likes array set liked to false
-	// if (!isLiked && liked) {
-	// 	setLiked(false);
-	// } else if (!isWatched && watched) {
-	// 	setWatched(false);
-	// }
-	//liked/watched movies should have the liked/
-
-	// //handles the click event
-	// const handleClick = (e) => {
-	// 	if (
-	// 		e.target.matches('.movie-poster-box') ||
-	// 		e.target.matches('.movie-poster__filter')
-	// 	) {
-	// 		setMovieId(id);
-	// 		setShowTile(true);
-	// 	}
-	// };
 
 	//used to set
 	const handleLike = () => {

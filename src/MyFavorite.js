@@ -1,6 +1,6 @@
 import React from 'react';
 import Rightbar from './components/Rightbar';
-import Leftbar from './components/Leftbar';
+
 import Moviebox from './components/Moviebox';
 import Nodata from './components/Nodata';
 import './header.css';
@@ -19,7 +19,6 @@ const MyFav = ({global}) => {
             <Moviebox
                 title={'My Favorite'}
                 movieP={likes}
-                // watchLists
             ></Moviebox>
         )} 
 		</>

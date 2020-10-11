@@ -1,8 +1,7 @@
-import React, { useState, useEffect,useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../moviebox.css';
 import Movie from './Movie';
-// import { SetItems } from '../App';
 import {useLocation} from 'react-router-dom'
 import {ReactComponent as Loader} from './loader.svg'
 const Moviebox = ({
@@ -24,8 +23,10 @@ const Moviebox = ({
 
 
 	useEffect(() => {
+		let isMounted=true;
+
+		//asynchronously fetches data
 		const fetchdata = async () => {
-			// setLoader(true)
 			const results = await axios.get(request);
 			const movies = results.data.results;
 			if (isLarge) {
@@ -33,17 +34,19 @@ const Moviebox = ({
 				movies.length = 4;
 				setMovies(movies);
 			}
-			//console.log(movies)
 			setLoader(false)
 			setMovies(movies);
 		};
-		if (request) {
+		if (request && isMounted) {
 			//if there is a request prop run the async function
 			fetchdata();
 		} else {
 			//if there is no request prop....then obviously  there's a  movie prop passed
 			setMovies(movieP);
 			setLoader(false)
+		}
+		return ()=>{
+			isMounted=false;
 		}
 	}, [movieP, request, isLarge]);
 

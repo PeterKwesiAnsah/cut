@@ -45,26 +45,7 @@ const Movietile = ({ request, global }) => {
 	//searches for an item with id inside an array of items
 	const [isLiked] = useAdded(likes, id);
 	const [isWatched] = useAdded(watchList, id);
-	// console.log(
-	// 	likes.includes({ id, path: url, title: original_title })
-	// );
-	// console.log(typeof likes[0].id)
-	// console.table(likes)
-	//use to determine if a movie poster is liked or not
-	// const [liked, setLiked] = useState(isLiked);
-	// const [watched, setWatched] = useState(isWatched);
 
-	// if (isLiked && !liked) {
-	// 	setLiked(true);
-	// } else if (isWatched && !watched) {
-	// 	setWatched(true);
-	// }
-
-	// if (!isLiked && liked) {
-	// 	setLiked(false);
-	// } else if (!isWatched && watched) {
-	// 	setWatched(false);
-	// }
 
 	const handleLike = () => {
 		//if movie is liked,remove it
@@ -119,12 +100,19 @@ const Movietile = ({ request, global }) => {
 	};
 
 	useEffect(() => {
+		let isMounted=true;
 		const fetchData = async () => {
 			const movie = await axios.get(request(id, type));
 			setMovie(movie.data);
 			// setURL(`https://image.tmdb.org/t/p/original${poster_path}`);
 		};
-		fetchData();
+		//this allows you to only fetch data when the component is mounted
+		if (isMounted) {
+			fetchData();
+		}
+		return ()=>{
+			isMounted=false;
+		}
 	}, []);
 	//function returns span of genres in the genres array
 	const getGenre = (genres) =>
@@ -134,8 +122,6 @@ const Movietile = ({ request, global }) => {
 			</span>
 		));
 
-	// //function handles showing the moviePosters
-	// const handleClick = () => [setShowTile(false)];
 
 	//function handles youtube trailer
 	const handlePlay = () => {
@@ -180,9 +166,6 @@ const Movietile = ({ request, global }) => {
 								name={original_title || movie.title || ''}
 							></Playtrailer>
 						)}
-						{/* <Link to='/'>
-						<Close></Close>
-						</Link> */}
 
 						<div className="movie-container">
 							<div className="header-row header-row__tile">

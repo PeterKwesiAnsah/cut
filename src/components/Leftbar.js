@@ -40,6 +40,7 @@ const Leftbar = () => {
 
 	//if the value is not empty auto focus it using useRef
 	useEffect(() => {
+		let isMounted=true
 		if (pathname === '/search') {
 			inputEl.current.focus();
 		} else {
@@ -47,13 +48,16 @@ const Leftbar = () => {
 			setSearch('');
 		}
 
-		if(pathname ==='/'){
+		if(pathname ==='/' && isMounted){
 			setSearchType('movie')
 
 		}
-		else if(pathname === '/series' || pathname === '/netflixTV'){
+		else if((pathname === '/series' || pathname === '/netflixTV') && isMounted){
 			setSearchType('tv')
 
+		}
+		return ()=>{
+			isMounted=false
 		}
 	}, [pathname]);
 

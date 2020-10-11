@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import '../header.css';
 import axios from 'axios';
-import Rightbar from './Rightbar';
-import Leftbar from './Leftbar';
+
 import { Link } from 'react-router-dom';
 import { SetItems } from '../App';
 import Playtrailer from './Playtrailer';

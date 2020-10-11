@@ -2,19 +2,16 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../movietile.css';
 import { Palette } from 'react-palette';
-// import Play from './Play';
 import Fav from './Fav';
 import WatchList from './WatchList';
 import convertHexToRGBA from '../hexRGB';
-// import Playtrailer from './Playtrailer';
-// import { SetItems } from '../App';
 import { useAdded } from '../hooks/useAdded';
 import { useParams,useLocation } from 'react-router-dom';
 import Rightbar from './Rightbar';
 import Leftbar from './Leftbar';
 
 import '../header.css';
-/* http://localhost:3000/tv/48866*/
+
 const Tvtile = ({ request, global }) => {
 
 	const {pathname}=useLocation()
@@ -23,8 +20,6 @@ const Tvtile = ({ request, global }) => {
 	//movie tile needs work
 	const id = parseInt(useParams().id);
 
-	// //(you can get rid of the url state since the image url can be found in the move state data)
-	// const [url, setURL] = useState('');
 	//Creating a state for movie data from fetch
 	const [movie, setMovie] = useState({});
 
@@ -46,26 +41,7 @@ const Tvtile = ({ request, global }) => {
 	//searches for an item with id inside an array of items
 	const [isLiked] = useAdded(likes, id);
 	const [isWatched] = useAdded(watchList, id);
-	// console.log(
-	// 	likes.includes({ id, path: url, title: original_title })
-	// );
-	// console.log(typeof likes[0].id)
-	// console.table(likes)
-	//use to determine if a movie poster is liked or not
-	// const [liked, setLiked] = useState(isLiked);
-	// const [watched, setWatched] = useState(isWatched);
 
-	// if (isLiked && !liked) {
-	// 	setLiked(true);
-	// } else if (isWatched && !watched) {
-	// 	setWatched(true);
-	// }
-
-	// if (!isLiked && liked) {
-	// 	setLiked(false);
-	// } else if (!isWatched && watched) {
-	// 	setWatched(false);
-	// }
 
 	const handleLike = () => {
 		//if movie is liked,remove it
@@ -120,12 +96,19 @@ const Tvtile = ({ request, global }) => {
 	};
 
 	useEffect(() => {
+		let isMounted = true;
 		const fetchData = async () => {
 			const movie = await axios.get(request(id, type));
 			setMovie(movie.data);
 			// setURL(`https://image.tmdb.org/t/p/original${movie.data.poster_path}`);
 		};
-		fetchData();
+		if(isMounted){
+			fetchData();
+		}
+		return ()=>{
+			isMounted=false;
+		}
+		
 	}, []);
 	//function returns span of genres in the genres array
 	const getGenre = (genres) =>
@@ -142,14 +125,6 @@ const Tvtile = ({ request, global }) => {
 				{name}
 			</span>
 		));
-
-	// //function handles showing the moviePosters
-	// const handleClick = () => [setShowTile(false)];
-
-	//function handles youtube trailer
-	// const handlePlay = () => {
-	// 	setShowTrailer(true);
-	// };
 
 	return (
 		<Palette
@@ -169,7 +144,7 @@ const Tvtile = ({ request, global }) => {
 					lightVibrant: convertHexToRGBA(lightVibrant, 60),
 				};
 
-				//write logic here
+				
 				return (
 					<div
 						style={{
@@ -183,15 +158,6 @@ const Tvtile = ({ request, global }) => {
 						}}
 						className="movie-tile"
 					>
-						{/* {showTrailer && (
-							<Playtrailer
-								showTrailer={setShowTrailer}
-								name={name || movie.title || ''}
-							></Playtrailer>
-						)} */}
-						{/* <Link to='/'>
-						<Close></Close>
-						</Link> */}
 
 						<div className="movie-container">
 							<div className="header-row header-row__tile">
@@ -236,10 +202,7 @@ const Tvtile = ({ request, global }) => {
 										<h1 className='season-text'>
 											{`${number_of_seasons} Season${number_of_seasons > 1 ?'s':''}`}
 										</h1>
-										{/* <div onClick={handlePlay} className="movie-icons__play">
-											<Play medium></Play>
-											<span className="play-text">Play Trailer</span>
-										</div> */}
+			
 									</div>
 									<p className="movie-tagline">{tagline}</p>
 									<div className="movie-overview">
@@ -260,71 +223,5 @@ const Tvtile = ({ request, global }) => {
 		</Palette>
 	);
 };
-/*[
-  {
-    "name": "Params",
-    "subHooks": [
-      {
-        "name": "Context",
-        "value": {
-          "history": "{action: \"PUSH\", block: ƒ block() {}, createHref: ƒ…}",
-          "location": "{hash: \"\", key: \"vqa7xs\", pathname: \"/tv/63174\", se…}",
-          "match": "{isExact: true, params: {…}, path: \"/tv/:id\", url: …}"
-        },
-        "subHooks": []
-      }
-    ]
-  },
-  {
-    "name": "State",
-    "value": "https://image.tmdb.org/t/p/original/4EYPN5mVIhKLfxGruy7Dy41dTVn.jpg",
-    "subHooks": []
-  },
-  {
-    "name": "State",
-    "value": {
-      "backdrop_path": "/ta5oblpMlEcIPIS2YGcq9XEkWK2.jpg",
-      "created_by": "[{…}]",
-      "episode_run_time": [
-        45
-      ],
-      "first_air_date": "2016-01-25",
-      "genres": "[{…}, {…}]",
-      "homepage": "https://www.netflix.com/title/80057918",
-      "id": 63174,
-      "in_production": true,
-      "languages": "[\"en\"]",
-      "last_air_date": "2020-08-21",
-      "last_episode_to_air": "{air_date: \"2020-08-21\", episode_number: 8, id: 239…}",
-      "name": "Lucifer",
-      "next_episode_to_air": null,
-      "networks": "[{…}, {…}]",
-      "number_of_episodes": 75,
-      "number_of_seasons": 5,
-      "origin_country": "[\"US\"]",
-      "original_language": "en",
-      "original_name": "Lucifer",
-      "overview": "Bored and unhappy as the Lord of Hell, Lucifer Morningstar abandoned his throne and retired to Los Angeles, where he has teamed up with LAPD detective Chloe Decker to take down criminals. But the longer he's away from the underworld, the greater the threat that the worst of humanity could escape.",
-      "popularity": 1026.327,
-      "poster_path": "/4EYPN5mVIhKLfxGruy7Dy41dTVn.jpg",
-      "production_companies": "[{…}, {…}, {…}, {…}, {…}]",
-      "seasons": "[{…}, {…}, {…}, {…}, {…}, {…}]",
-      "status": "Returning Series",
-      "type": "Scripted",
-      "vote_average": 8.5,
-      "vote_count": 5463
-    },
-    "subHooks": []
-  },
-  {
-    "name": "State",
-    "value": false,
-    "subHooks": []
-  },
-  {
-    "name": "Effect",
-    "value": "ƒ () {}",
-    "subHooks": []
-  }
-] */
+
 export default React.memo(Tvtile);
