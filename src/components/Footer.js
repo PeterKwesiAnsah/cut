@@ -9,11 +9,11 @@ import '../footer.css'
 const Footer = () => {
     return (
         <div className='footer'>
-        <Link to ='/'>
+        <Link to ='/twitter' target="_blank">
         <Twitter></Twitter>
         </Link>
-       <Link>
-       <Github to ='/'></Github>  
+       <Link to ='/github' target="_blank">
+       <Github ></Github>  
        </Link>
        <div className='footer-logo__box'>
        <Logo></Logo>

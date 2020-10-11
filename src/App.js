@@ -130,6 +130,14 @@ const App = () => {
 			<>
 				<main className="App">
 					<Switch>
+					<Route path='/twitter' component={() => { 
+     window.location.href = 'https://twitter.com/akwesi_ansah'; 
+     return null;
+}}/>
+<Route path='/github' component={() => { 
+     window.location.href ='https://github.com/PeterKwesiAnsah'; 
+     return null;
+}}/>
 						<Route path="/search">
 							<Search
 								global={{ imgBase_URL }}
