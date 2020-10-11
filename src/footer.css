@@ -3,7 +3,7 @@
  grid-template-columns: repeat(2,1fr);
  justify-items: flex-end;
  padding: 3rem;
- cursor: pointer;
+ 
  gap: 3rem;
 }
 
@@ -22,6 +22,7 @@ justify-self: flex-start;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .footer-logo__box > svg{

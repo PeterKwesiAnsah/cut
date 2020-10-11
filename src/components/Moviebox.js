@@ -4,6 +4,7 @@ import '../moviebox.css';
 import Movie from './Movie';
 // import { SetItems } from '../App';
 import {useLocation} from 'react-router-dom'
+import {ReactComponent as Loader} from './loader.svg'
 const Moviebox = ({
 	title,
 	request,
@@ -16,9 +17,7 @@ const Moviebox = ({
 
 
 	const [movies, setMovies] = useState([]);
-	// const [empty,setEmpty]=useState(t)
-	// //Get the search type from context API
-	// const { searchType } = useContext(SetItems);
+	const [loader,setLoader]=useState(true)
 
 	//Get pathname from useLocation
     const {pathname}=useLocation()
@@ -26,6 +25,7 @@ const Moviebox = ({
 
 	useEffect(() => {
 		const fetchdata = async () => {
+			// setLoader(true)
 			const results = await axios.get(request);
 			const movies = results.data.results;
 			if (isLarge) {
@@ -34,6 +34,7 @@ const Moviebox = ({
 				setMovies(movies);
 			}
 			//console.log(movies)
+			setLoader(false)
 			setMovies(movies);
 		};
 		if (request) {
@@ -42,14 +43,15 @@ const Moviebox = ({
 		} else {
 			//if there is no request prop....then obviously  there's a  movie prop passed
 			setMovies(movieP);
+			setLoader(false)
 		}
 	}, [movieP, request, isLarge]);
 
 	return (
 		<div className={`movie-box ${scroll && 'movie-box__scroll'} ${pathname ==='/' && 'movie-box--home'}`}>
 			<h1 className="movie-box__title">{title}</h1>
-
-			<div
+		{
+		loader ?<div className='movie-loader'><Loader></Loader></div>:<div
 				className={
 					request && !search
 						? `${!scroll ? 'movie-row' : 'movie-row__scroll'}`
@@ -77,6 +79,8 @@ const Moviebox = ({
 							></Movie>
 					  ))}
 			</div>
+		}
+		
 		</div>
 	);
 };
